@@ -103,12 +103,19 @@
         }
       ],
       "symmetrical": true
+    },
+    "D_wing_end": {
+      "file": "D_wing_end-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "symmetrical": true
     }
   },
   "connectors": {
     "A": ["A_arm_large"],
     "B": ["B_arm_large"],
     "C": ["C_connector", "C_flat_female"],
-    "E": ["E_flat_male"]
+    "E": ["E_flat_male"],
+    "D": ["D_wing_end"]
   }
 }

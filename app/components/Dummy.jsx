@@ -15,11 +15,7 @@ export default function Dummy() {
           snap.mannequin.widthMultiplier * snap.mannequin.height,
         ]}
       >
-        <group
-          rotation={[0, Math.PI, 0]}
-          position={[0, 0, -0.06]}
-          scale={[1 / 1.675, 1 / 1.675, 1 / 1.675]}
-        >
+        <group rotation={[0, Math.PI, 0]}>
           <Body />
         </group>
       </group>

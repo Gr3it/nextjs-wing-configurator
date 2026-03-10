@@ -1,15 +1,11 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import * as THREE from "three";
 import { useCursor } from "@react-three/drei";
 import AddMenu from "./AddMenu";
 
 // Raycast che ignora il depth buffer: colpisce sempre se il raggio interseca la geometria
 function depthIgnoredRaycast(raycaster, intersects) {
-  const target = new THREE.Vector3();
-  const geometry = this.geometry;
-  const matrixWorld = this.matrixWorld;
-
   // Usa il raycast standard di Mesh ma poi azzera la distanza per non essere scavalcato
   THREE.Mesh.prototype.raycast.call(this, raycaster, intersects);
 
