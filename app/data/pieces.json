@@ -1,0 +1,114 @@
+{
+  "info": {
+    "folder": "models/parts/"
+  },
+  "pieces": {
+    "backplate": {
+      "file": "backplate-transformed.glb",
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.07, -0.028, 0.01],
+          "type": "A"
+        }
+      ],
+      "symmetrical": true
+    },
+    "A_bolt": {
+      "file": "A_bolt-transformed.glb",
+      "printWeight": 150
+    },
+    "B_bolt": {
+      "file": "B_bolt-transformed.glb",
+      "printWeight": 150
+    },
+    "A_arm_large": {
+      "file": "A_arm_large-transformed.glb",
+      "extra": ["A_bolt"],
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": -180,
+        "max": 180,
+        "step": 45
+      },
+      "rotationAxis": "z",
+      "connectors": [
+        {
+          "position": [0.236, -0.088, 0],
+          "type": "B"
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_arm_large": {
+      "file": "B_arm_large-transformed.glb",
+      "extra": ["B_bolt"],
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": -180,
+        "max": 180,
+        "step": 45
+      },
+      "rotationAxis": "z",
+      "connectors": [
+        {
+          "position": [0.279, -0.0174, 0],
+          "type": "C"
+        }
+      ],
+      "symmetrical": true
+    },
+    "C_connector": {
+      "file": "C_connector-transformed.glb",
+      "printWeight": 150,
+      "extra": ["C_bolt"],
+      "connectors": [
+        {
+          "position": [0.03, 0, 0],
+          "type": "D"
+        }
+      ],
+      "symmetrical": true
+    },
+    "C_bolt": {
+      "file": "C_bolt-transformed.glb",
+      "printWeight": 150,
+      "symmetrical": true
+    },
+    "C_flat_female": {
+      "file": "C_flat_female-transformed.glb",
+      "printWeight": 150,
+      "extra": ["C_bolt"],
+      "connectors": [
+        {
+          "position": [0.035, 0.002, 0.009],
+          "type": "E"
+        }
+      ],
+      "symmetrical": true
+    },
+    "E_flat_male": {
+      "file": "E_flat_male-transformed.glb",
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": 0,
+        "max": 45,
+        "step": 0
+      },
+      "rotationAxis": "y",
+      "connectors": [
+        {
+          "position": [0.035, -0.0026, -0.008],
+          "type": "D"
+        }
+      ],
+      "symmetrical": true
+    }
+  },
+  "connectors": {
+    "A": ["A_arm_large"],
+    "B": ["B_arm_large"],
+    "C": ["C_connector", "C_flat_female"],
+    "E": ["E_flat_male"]
+  }
+}
