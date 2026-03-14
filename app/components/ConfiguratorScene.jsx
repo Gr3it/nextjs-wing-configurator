@@ -12,6 +12,15 @@ import Dummy from "./Dummy";
 import Wings from "./Wings";
 import DeselectOnEsc from "./DeselectOnEsc";
 
+// Add this at the very top of your entry file, before any other imports
+const originalWarn = console.warn;
+console.warn = (...args) => {
+  if (typeof args[0] === "string" && args[0].includes("THREE.Clock")) {
+    console.trace("THREE.Clock warning origin 👇");
+  }
+  originalWarn(...args);
+};
+
 export default function ConfiguratorScene() {
   return (
     <div className="w-screen h-screen bg-slate-100">

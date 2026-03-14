@@ -3,7 +3,7 @@ import { PivotControls, useGLTF } from "@react-three/drei";
 import { useRef, useCallback, useEffect, useMemo } from "react";
 import * as THREE from "three";
 import piecesData from "../data/pieces.json";
-import { b2t } from "../lib/coords";
+import { b2t, b2tRot } from "../lib/coords";
 import {
   updateCurrentRotation,
   getNodeByPath,
@@ -70,7 +70,8 @@ export default function WingNode({
     snap.active.path !== null &&
     snap.active.path.join(",") === path.join(",");
 
-  const rotationAxis = pieceInfo.rotationAxis;
+  const limits = piecesData.connectorRotationLimits?.[pieceInfo.source];
+  const rotationAxis = limits?.axis;
 
   const activeAxes = [
     rotationAxis !== "x",
@@ -78,7 +79,6 @@ export default function WingNode({
     rotationAxis !== "z",
   ];
 
-  const limits = pieceInfo.rotationLimits;
   const rotationLimits = [
     rotationAxis === "x" && limits
       ? [limits.min * (Math.PI / 180), limits.max * (Math.PI / 180)]
@@ -171,29 +171,29 @@ export default function WingNode({
 
   const children = pieceInfo.connectors?.map((conn, idx) => {
     const childNode = node.children?.[idx];
+    const connPos = b2t(conn.position);
+    const connRot = conn.customRotation
+      ? b2tRot(conn.customRotation)
+      : undefined;
 
     // Nessun figlio → placeholder con "+"
     if (!childNode) {
       return (
-        <ConnectorAdd
-          key={`placeholder-${idx}`}
-          position={b2t(conn.position)}
-          connectorType={conn.type}
-          parentPath={path}
-          connectorIndex={idx}
-          active={isActive}
-        />
+        <group key={`placeholder-${idx}`} position={connPos} rotation={connRot}>
+          <ConnectorAdd
+            connectorType={conn.type}
+            parentPath={path}
+            connectorIndex={idx}
+            active={isActive}
+          />
+        </group>
       );
     }
 
     return (
-      <WingNode
-        key={idx}
-        node={childNode}
-        path={[...path, idx]}
-        isRight={isRight}
-        position={b2t(conn.position)}
-      />
+      <group key={idx} position={connPos} rotation={connRot}>
+        <WingNode node={childNode} path={[...path, idx]} isRight={isRight} />
+      </group>
     );
   });
 
@@ -212,7 +212,7 @@ export default function WingNode({
           rotationLimits={rotationLimits}
           onDrag={handleDrag}
           depthTest={false}
-          visible={isActive && pieceInfo.rotationAxis != undefined}
+          visible={isActive && rotationAxis != undefined}
           matrix={
             isRight
               ? buildRotationMatrix(rotationAxis, currentAngle)

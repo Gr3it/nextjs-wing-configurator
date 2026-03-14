@@ -105,7 +105,8 @@ export const addPiece = (path, pieceId) => {
     return;
   }
 
-  // Il parent è tutto il path tranne l'ultimo indice
+  // L'ultimo elemento del path è l'indice del connettore nel parent
+  const index = path[path.length - 1];
   const parentPath = path.slice(0, -1);
   const parent =
     parentPath.length === 0
@@ -117,7 +118,8 @@ export const addPiece = (path, pieceId) => {
     return;
   }
 
-  parent.children.push(newNode);
+  // Inserisce all'indice esatto del connettore per mantenere l'ordine
+  parent.children[index] = newNode;
   state.preset = "custom";
 };
 
@@ -137,7 +139,9 @@ export const removePiece = (path) => {
       return;
     }
     const { parent, index } = result;
-    parent.children.splice(index, 1); // subtree eliminato ricorsivamente
+    // Invece di splice, mettiamo undefined per non scalare gli indici dei fratelli
+    // (altrimenti i figli successivi si sposterebbero su connettori sbagliati)
+    parent.children[index] = undefined;
   }
 
   // Resetta active se il nodo rimosso era quello attivo

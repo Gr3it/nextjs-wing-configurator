@@ -66,4 +66,8 @@ export default function Wings() {
   );
 }
 
-useGLTF.preload(`/${pieces.info.folder}${pieces.pieces.backplate.file}`);
+// Preload di tutti i GLB all'avvio per evitare il flash bianco quando
+// vengono aggiunti nuovi componenti non ancora in cache.
+Object.values(pieces.pieces).forEach((piece) => {
+  useGLTF.preload(`/${pieces.info.folder}${piece.file}`);
+});
