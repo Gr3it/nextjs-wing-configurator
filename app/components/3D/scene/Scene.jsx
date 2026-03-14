@@ -8,11 +8,11 @@ import {
   ContactShadows,
 } from "@react-three/drei";
 import { Suspense } from "react";
-import Dummy from "./Dummy";
-import Wings from "./Wings";
-import DeselectOnEsc from "./DeselectOnEsc";
+import Mannequin from "../mannequin/Mannequin";
+import WingAssembly from "../wing/WingAssembly";
+import EscDeselect from "../../UI/EscDeselect";
 
-// Add this at the very top of your entry file, before any other imports
+// Suppress THREE.Clock warnings during development
 const originalWarn = console.warn;
 console.warn = (...args) => {
   if (typeof args[0] === "string" && args[0].includes("THREE.Clock")) {
@@ -21,7 +21,7 @@ console.warn = (...args) => {
   originalWarn(...args);
 };
 
-export default function ConfiguratorScene() {
+export default function Scene() {
   return (
     <div className="w-screen h-screen bg-slate-100">
       <Canvas shadows camera={{ position: [2, 2, 5], fov: 45 }}>
@@ -30,8 +30,8 @@ export default function ConfiguratorScene() {
           <Sky sunPosition={[100, 20, 100]} />
 
           <Bounds fit observe margin={1.2}>
-            <Dummy />
-            <Wings />
+            <Mannequin />
+            <WingAssembly />
           </Bounds>
 
           <ContactShadows
@@ -46,7 +46,7 @@ export default function ConfiguratorScene() {
 
         <OrbitControls makeDefault />
       </Canvas>
-      <DeselectOnEsc />
+      <EscDeselect />
     </div>
   );
 }

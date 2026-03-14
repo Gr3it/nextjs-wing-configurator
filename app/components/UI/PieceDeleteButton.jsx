@@ -1,9 +1,9 @@
 "use client";
 import { useState, useCallback } from "react";
 import { Html } from "@react-three/drei";
-import { removePiece } from "../store/wingState";
+import { removePiece } from "../../store/wingState";
 
-export default function PieceRemove({
+export default function PieceDeleteButton({
   path,
   isActive,
   position = [0, -0.1, 0],

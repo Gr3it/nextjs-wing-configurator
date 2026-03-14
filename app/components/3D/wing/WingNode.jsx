@@ -2,17 +2,17 @@
 import { PivotControls, useGLTF } from "@react-three/drei";
 import { useRef, useCallback, useEffect, useMemo } from "react";
 import * as THREE from "three";
-import piecesData from "../data/pieces.json";
-import { b2t, b2tRot } from "../lib/coords";
+import piecesData from "../../../data/pieces.json";
+import { b2t, b2tRot } from "../../../lib/coords";
 import {
   updateCurrentRotation,
   getNodeByPath,
   setActive,
   state,
-} from "../store/wingState";
+} from "../../../store/wingState";
 import { useSnapshot } from "valtio";
-import ConnectorAdd from "./ConnectorAdd";
-import PieceRemove from "./PieceRemove";
+import ConnectorButton from "./ConnectorButton";
+import PieceDeleteButton from "../../UI/PieceDeleteButton";
 
 function snapToStep(value, step) {
   if (!step) return value;
@@ -96,7 +96,6 @@ export default function WingNode({
 
   useEffect(() => {
     if (!pivotRef.current) return;
-    // Applica lo stesso scale che usa il matrix prop iniziale
     const matrix = isRight
       ? buildRotationMatrix(rotationAxis, currentAngle)
       : new THREE.Matrix4()
@@ -115,7 +114,7 @@ export default function WingNode({
       const euler = new THREE.Euler().setFromRotationMatrix(m, "XYZ");
       let angle = euler[rotationAxis];
 
-      // ✅ Negate angle for left side to fix inverted rotation direction
+      // Negate angle for left side to fix inverted rotation direction
       if (!isRight) angle = -angle;
 
       if (step) angle = snapToStep(angle, step);
@@ -176,11 +175,10 @@ export default function WingNode({
       ? b2tRot(conn.customRotation)
       : undefined;
 
-    // Nessun figlio → placeholder con "+"
     if (!childNode) {
       return (
         <group key={`placeholder-${idx}`} position={connPos} rotation={connRot}>
-          <ConnectorAdd
+          <ConnectorButton
             connectorType={conn.type}
             parentPath={path}
             connectorIndex={idx}
@@ -226,7 +224,7 @@ export default function WingNode({
           {children}
         </PivotControls>
       </group>
-      <PieceRemove path={path} isActive={isActive} />
+      <PieceDeleteButton path={path} isActive={isActive} />
     </group>
   );
 }

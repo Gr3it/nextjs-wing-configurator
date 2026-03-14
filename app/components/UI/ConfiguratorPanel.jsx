@@ -6,7 +6,7 @@ import {
   setPreset,
   resetAllToBase,
   saveAllCurrentAsBase,
-} from "../store/wingState";
+} from "../../store/wingState";
 import {
   ChevronDown,
   Download,
@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { toast } from "react-toastify";
 
-export default function ConfiguratorUI() {
+export default function ConfiguratorPanel() {
   const snap = useSnapshot(state);
 
   const handleExport = () => {

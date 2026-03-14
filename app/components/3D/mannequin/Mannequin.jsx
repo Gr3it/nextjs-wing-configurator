@@ -1,9 +1,9 @@
 "use client";
 import { useSnapshot } from "valtio";
-import { state } from "../store/wingState";
-import { Body } from "../models/Body";
+import { state } from "../../../store/wingState";
+import { Body } from "../../../models/Body";
 
-export default function Dummy() {
+export default function Mannequin() {
   const snap = useSnapshot(state);
 
   return (

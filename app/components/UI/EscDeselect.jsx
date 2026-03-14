@@ -1,8 +1,8 @@
 "use client";
 import { useEffect } from "react";
-import { clearActive } from "../store/wingState";
+import { clearActive } from "../../store/wingState";
 
-export default function DeselectOnEsc() {
+export default function EscDeselect() {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") clearActive();

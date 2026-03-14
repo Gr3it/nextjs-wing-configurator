@@ -2,14 +2,14 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { useSnapshot } from "valtio";
-import { state } from "../store/wingState";
-import pieces from "../data/pieces.json";
+import { state } from "../../../store/wingState";
+import pieces from "../../../data/pieces.json";
 
 import WingNode from "./WingNode";
-import ConnectorAdd from "./ConnectorAdd";
-import { b2t } from "../lib/coords";
+import ConnectorButton from "./ConnectorButton";
+import { b2t } from "../../../lib/coords";
 
-export default function Wings() {
+export default function WingAssembly() {
   const snap = useSnapshot(state);
   const path = `/${pieces.info.folder}${pieces.pieces.backplate.file}`;
   const { scene } = useGLTF(path);
@@ -28,7 +28,7 @@ export default function Wings() {
     <group position={[0, snap.backplateHeightRatio * snap.mannequin.height, 0]}>
       <primitive object={scene} castShadow receiveShadow />
 
-      {/* Right Wing — editable, con PivotControls */}
+      {/* Right Wing — editable, with PivotControls */}
       {snap.rightWingRoot ? (
         <WingNode
           node={snap.rightWingRoot}
@@ -37,7 +37,7 @@ export default function Wings() {
           position={rightPos}
         />
       ) : (
-        <ConnectorAdd
+        <ConnectorButton
           position={rightPos}
           size={0.05}
           connectorType={pieces.pieces.backplate.connectors[0].type}
@@ -47,13 +47,13 @@ export default function Wings() {
         />
       )}
 
-      {/* Left Wing — mirror, senza PivotControls */}
+      {/* Left Wing — mirrored, without PivotControls */}
       {snap.rightWingRoot ? (
         <group position={leftPos} scale={[-1, 1, 1]}>
           <WingNode node={snap.rightWingRoot} path={[]} isRight={false} />
         </group>
       ) : (
-        <ConnectorAdd
+        <ConnectorButton
           position={leftPos}
           size={0.05}
           connectorType={pieces.pieces.backplate.connectors[0].type}
@@ -66,8 +66,7 @@ export default function Wings() {
   );
 }
 
-// Preload di tutti i GLB all'avvio per evitare il flash bianco quando
-// vengono aggiunti nuovi componenti non ancora in cache.
+// Preload all GLBs at startup to avoid white flash when new pieces are added
 Object.values(pieces.pieces).forEach((piece) => {
   useGLTF.preload(`/${pieces.info.folder}${piece.file}`);
 });

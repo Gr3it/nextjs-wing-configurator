@@ -436,7 +436,7 @@
       "source": "C",
       "connectors": [
         {
-          "position": [0.0361, -0.0026, 0.0161],
+          "position": [0.0361, -0.01, 0.0161],
           "type": "HL",
           "customRotation": [0, -22.5, 0]
         }

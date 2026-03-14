@@ -2,14 +2,13 @@
 import { useState } from "react";
 import * as THREE from "three";
 import { useCursor } from "@react-three/drei";
-import AddMenu from "./AddMenu";
+import PieceAddMenu from "../../UI/PieceAddMenu";
 
-// Raycast che ignora il depth buffer: colpisce sempre se il raggio interseca la geometria
+// Raycast that ignores the depth buffer: always hits if the ray intersects the geometry
 function depthIgnoredRaycast(raycaster, intersects) {
-  // Usa il raycast standard di Mesh ma poi azzera la distanza per non essere scavalcato
   THREE.Mesh.prototype.raycast.call(this, raycaster, intersects);
 
-  // Per ogni intersezione trovata, forza una distanza bassa così vince su tutto
+  // Force a very low distance so this always wins over other meshes
   for (let i = 0; i < intersects.length; i++) {
     if (intersects[i].object === this) {
       intersects[i].distance = 0.0001;
@@ -17,7 +16,7 @@ function depthIgnoredRaycast(raycaster, intersects) {
   }
 }
 
-export default function ConnectorAdd({
+export default function ConnectorButton({
   position = [0, 0, 0],
   size = 0.02,
   connectorType,
@@ -42,7 +41,7 @@ export default function ConnectorAdd({
 
   return (
     <group position={position} renderOrder={999}>
-      {/* Cerchio pieno — hit area principale con raycast prioritario */}
+      {/* Hit area circle with priority raycast */}
       <mesh
         raycast={depthIgnoredRaycast}
         renderOrder={999}
@@ -67,7 +66,7 @@ export default function ConnectorAdd({
         />
       </mesh>
 
-      {/* Barra orizzontale */}
+      {/* Horizontal bar */}
       {showPlus && (
         <mesh position={[0, 0, 0.0001]} raycast={() => null} renderOrder={999}>
           <planeGeometry args={[barLength, barThickness]} />
@@ -80,7 +79,7 @@ export default function ConnectorAdd({
         </mesh>
       )}
 
-      {/* Barra verticale */}
+      {/* Vertical bar */}
       {showPlus && (
         <mesh position={[0, 0, 0.0001]} raycast={() => null} renderOrder={999}>
           <planeGeometry args={[barThickness, barLength]} />
@@ -93,9 +92,9 @@ export default function ConnectorAdd({
         </mesh>
       )}
 
-      {/* Menu overlay */}
+      {/* Piece picker overlay */}
       {open && (
-        <AddMenu
+        <PieceAddMenu
           connectorType={connectorType}
           parentPath={parentPath}
           connectorIndex={connectorIndex}

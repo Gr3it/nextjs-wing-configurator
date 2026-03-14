@@ -1,21 +1,19 @@
 "use client";
-import ConfiguratorScene from "./components/ConfiguratorScene";
-import ConfiguratorUI from "./components/ConfiguratorUI";
+import Scene from "./components/3D/scene/Scene";
+import ConfiguratorPanel from "./components/UI/ConfiguratorPanel";
 
 export default function Home() {
   return (
     <main className="relative w-screen h-screen overflow-hidden">
       {/* 3D Scene Layer */}
       <div className="absolute inset-0 z-0">
-        <ConfiguratorScene />
+        <Scene />
       </div>
 
       {/* UI Overlay Layer */}
       <div className="absolute inset-0 z-10 pointer-events-none">
-        <ConfiguratorUI />
+        <ConfiguratorPanel />
       </div>
-
-      <div id="modal-root" />
 
       {/* Title / Info Overlay */}
       <div className="absolute top-4 right-4 text-right pointer-events-none">

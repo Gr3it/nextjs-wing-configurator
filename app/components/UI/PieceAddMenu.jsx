@@ -1,21 +1,21 @@
 "use client";
 import { Html } from "@react-three/drei";
 import { useEffect, useRef } from "react";
-import piecesData from "../data/pieces.json";
-import { addPiece } from "../store/wingState";
+import piecesData from "../../data/pieces.json";
+import { addPiece } from "../../store/wingState";
 
 /**
- * AddMenu
- * Overlay HTML ancorato al ConnectorAdd cliccato.
- * Mostra i pezzi compatibili col tipo di connettore e li aggiunge allo store.
+ * PieceAddMenu
+ * HTML overlay anchored to the clicked ConnectorButton.
+ * Shows compatible pieces for the connector type and adds them to the store.
  *
  * Props:
- *  connectorType  — es. "A1", "A2"
- *  parentPath     — path del nodo padre nel tree (es. [0, 1])
- *  connectorIndex — indice del connettore nel nodo padre
- *  onClose        — callback per chiudere il menu
+ *  connectorType  — e.g. "A1", "A2"
+ *  parentPath     — path of the parent node in the tree (e.g. [0, 1])
+ *  connectorIndex — index of the connector in the parent node
+ *  onClose        — callback to close the menu
  */
-export default function AddMenu({
+export default function PieceAddMenu({
   connectorType,
   parentPath,
   connectorIndex,
@@ -23,7 +23,7 @@ export default function AddMenu({
 }) {
   const menuRef = useRef();
 
-  // Chiudi cliccando fuori
+  // Close when clicking outside
   useEffect(() => {
     const handlePointerDown = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -34,14 +34,13 @@ export default function AddMenu({
     return () => window.removeEventListener("pointerdown", handlePointerDown);
   }, [onClose]);
 
-  // Pezzi compatibili per questo tipo di connettore
+  // Compatible pieces for this connector type
   const compatiblePieceIds = piecesData.connectors[connectorType] ?? [];
   const compatiblePieces = compatiblePieceIds
     .map((id) => ({ id, info: piecesData.pieces[id] }))
     .filter(({ info }) => !!info);
 
   const handleSelect = (pieceId) => {
-    // Il path del nuovo nodo è parentPath + connectorIndex
     let targetPath;
     if (connectorIndex !== -1) targetPath = [...parentPath, connectorIndex];
     else targetPath = parentPath;
@@ -101,7 +100,7 @@ export default function AddMenu({
           </button>
         </div>
 
-        {/* Griglia pezzi */}
+        {/* Piece grid */}
         {compatiblePieces.length === 0 ? (
           <div
             style={{ color: "#555", fontSize: "11px", fontFamily: "monospace" }}
