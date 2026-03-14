@@ -9,11 +9,12 @@
       "connectors": [
         {
           "position": [0.07, -0.028, 0.01],
-          "type": "A"
+          "type": "A1"
         }
       ],
       "symmetrical": true
     },
+    
     "A_bolt": {
       "file": "A_bolt-transformed.glb",
       "printWeight": 150
@@ -22,26 +23,123 @@
       "file": "B_bolt-transformed.glb",
       "printWeight": 150
     },
-    "A_arm_large": {
-      "file": "A_arm_large-transformed.glb",
+    "C_bolt": {
+      "file": "C_bolt-transformed.glb",
+      "printWeight": 150,
+      "symmetrical": true
+    },
+    
+    "A1_arm_static_angled_large": {
+      "file": "A1_arm_static_angled_large-transformed.glb",
       "extra": ["A_bolt"],
       "printWeight": 150,
       "rotationLimits": {
-        "min": -180,
-        "max": 180,
+        "min": -90,
+        "max": 45,
         "step": 45
       },
       "rotationAxis": "z",
       "connectors": [
         {
-          "position": [0.236, -0.088, 0],
-          "type": "B"
+          "position": [0.2367, -0.088, 0],
+          "type": "A2"
         }
       ],
       "symmetrical": true
     },
-    "B_arm_large": {
-      "file": "B_arm_large-transformed.glb",
+    "A1_arm_static_angled_medium": {
+      "file": "A1_arm_static_angled_medium-transformed.glb",
+      "extra": ["A_bolt"],
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": -90,
+        "max": 45,
+        "step": 45
+      },
+      "rotationAxis": "z",
+      "connectors": [
+        {
+          "position": [0.2052, -0.0728, 0],
+          "type": "A2"
+        }
+      ],
+      "symmetrical": true
+    },
+    "A1_arm_static_angled_small": {
+      "file": "A1_arm_static_angled_small-transformed.glb",
+      "extra": ["A_bolt"],
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": -90,
+        "max": 45,
+        "step": 45
+      },
+      "rotationAxis": "z",
+      "connectors": [
+        {
+          "position": [0.1736, -0.0576, 0],
+          "type": "A2"
+        }
+      ],
+      "symmetrical": true
+    },
+    "A1_arm_static_flat_large": {
+      "file": "A1_arm_static_flat_large-transformed.glb",
+      "extra": ["A_bolt"],
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": -90,
+        "max": 45,
+        "step": 45
+      },
+      "rotationAxis": "z",
+      "connectors": [
+        {
+          "position": [0.2771, 0, 0],
+          "type": "A2"
+        }
+      ],
+      "symmetrical": true
+    },
+    "A1_arm_static_flat_medium": {
+      "file": "A1_arm_static_flat_medium-transformed.glb",
+      "extra": ["A_bolt"],
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": -90,
+        "max": 45,
+        "step": 45
+      },
+      "rotationAxis": "z",
+      "connectors": [
+        {
+          "position": [0.2276, 0, 0],
+          "type": "A2"
+        }
+      ],
+      "symmetrical": true
+    },
+    "A1_arm_static_flat_small": {
+      "file": "A1_arm_static_flat_small-transformed.glb",
+      "extra": ["A_bolt"],
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": -90,
+        "max": 45,
+        "step": 45
+      },
+      "rotationAxis": "z",
+      "connectors": [
+        {
+          "position": [0.1782, 0, 0],
+          "type": "A2"
+        }
+      ],
+      "symmetrical": true
+    },
+    
+    "A2_arm_static_large": {
+      "file": "A2_arm_static_large-transformed.glb",
       "extra": ["B_bolt"],
       "printWeight": 150,
       "rotationLimits": {
@@ -52,43 +150,436 @@
       "rotationAxis": "z",
       "connectors": [
         {
-          "position": [0.279, -0.0174, 0],
+          "position": [0.2791, -0.017, 0],
           "type": "C"
         }
       ],
       "symmetrical": true
     },
-    "C_connector": {
-      "file": "C_connector-transformed.glb",
+    "A2_arm_static_medium": {
+      "file": "A2_arm_static_medium-transformed.glb",
+      "extra": ["B_bolt"],
       "printWeight": 150,
-      "extra": ["C_bolt"],
+      "rotationLimits": {
+        "min": -180,
+        "max": 180,
+        "step": 45
+      },
+      "rotationAxis": "z",
       "connectors": [
         {
-          "position": [0.03, 0, 0],
-          "type": "D"
+          "position": [0.2296, -0.017, 0],
+          "type": "C"
         }
       ],
       "symmetrical": true
     },
-    "C_bolt": {
-      "file": "C_bolt-transformed.glb",
+    "A2_arm_static_small": {
+      "file": "A2_arm_static_small-transformed.glb",
+      "extra": ["B_bolt"],
       "printWeight": 150,
-      "symmetrical": true
-    },
-    "C_flat_female": {
-      "file": "C_flat_female-transformed.glb",
-      "printWeight": 150,
-      "extra": ["C_bolt"],
+      "rotationLimits": {
+        "min": -180,
+        "max": 180,
+        "step": 45
+      },
+      "rotationAxis": "z",
       "connectors": [
         {
-          "position": [0.035, 0.002, 0.009],
-          "type": "E"
+          "position": [0.1801, -0.017, 0],
+          "type": "C"
         }
       ],
       "symmetrical": true
     },
-    "E_flat_male": {
-      "file": "E_flat_male-transformed.glb",
+    
+    "B_arm_wing_end": {
+      "file": "B_arm_wing_end-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "symmetrical": true
+    },
+    "B_arm_wing_large": {
+      "file": "B_arm_wing_large-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.290, 0, 0],
+          "type": "C"
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_arm_wing_medium": {
+      "file": "B_arm_wing_medium-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.240, 0, 0],
+          "type": "C"
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_arm_wing_small": {
+      "file": "B_arm_wing_small-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.190, 0, 0],
+          "type": "C"
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_elbow_22-5deg_A": {
+      "file": "B_connector_elbow_22-5deg_A-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.0346, 0, -0.0068],
+          "type": "C",
+          "customRotation": [0, -22.5, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_elbow_22-5deg_B": {
+      "file": "B_connector_elbow_22-5deg_B-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.0346, 0, 0.0068],
+          "type": "C",
+          "customRotation": [0, 22.5, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_elbow_45deg_A": {
+      "file": "B_connector_elbow_45deg_A-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.0362, 0, -0.015],
+          "type": "C",
+          "customRotation": [0, -45, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_elbow_45deg_B": {
+      "file": "B_connector_elbow_45deg_B-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.0362, 0, 0.015],
+          "type": "C",
+          "customRotation": [0, 45, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_elbow_90deg_A": {
+      "file": "B_connector_elbow_90deg_A-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.025, 0, -0.025],
+          "type": "C",
+          "customRotation": [0, -90, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_elbow_90deg_B": {
+      "file": "B_connector_elbow_90deg_B-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.025, 0, 0.025],
+          "type": "C",
+          "customRotation": [0, 90, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_elbow_flat": {
+      "file": "B_connector_elbow_flat-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.030, 0, 0],
+          "type": "C"
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_splitter_equilateral": {
+      "file": "B_connector_splitter_equilateral-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.0375, 0, 0.0216],
+          "type": "C",
+          "customRotation": [0, 60, 0]
+        },
+        {
+          "position": [0.0375, 0, -0.0216],
+          "type": "C",
+          "customRotation": [0, -60, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_splitter_Tpiece_A": {
+      "file": "B_connector_splitter_Tpiece_A-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.025, 0, 0.025],
+          "type": "C",
+          "customRotation": [0, 90, 0]
+        },
+        {
+          "position": [0.025, 0, -0.025],
+          "type": "C",
+          "customRotation": [0, -90, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_splitter_Tpiece_B": {
+      "file": "B_connector_splitter_Tpiece_B-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.050, 0, 0],
+          "type": "C"
+        },
+        {
+          "position": [0.025, 0, 0.025],
+          "type": "C",
+          "customRotation": [0, 90, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_splitter_Tpiece_C": {
+      "file": "B_connector_splitter_Tpiece_C-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.050, 0, 0],
+          "type": "C"
+        },
+        {
+          "position": [0.025, 0, -0.025],
+          "type": "C",
+          "customRotation": [0, -90, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "B_connector_splitter_vampire": {
+      "file": "B_connector_splitter_vampire-transformed.glb",
+      "extra": ["C_bolt"],
+      "printWeight": 150,
+      "connectors": [
+        {
+          "position": [0.038, 0, 0],
+          "type": "C"
+        },
+        {
+          "position": [0.0275, 0, 0.0247],
+          "type": "C",
+          "customRotation": [0, 45, 0]
+        },
+        {
+          "position": [0.0275, 0, -0.0247],
+          "type": "C",
+          "customRotation": [0, -45, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    
+    "C_connector_coupler": {
+      "file": "C_connector_coupler-transformed.glb",
+      "printWeight": 150,
+      "extra": ["C_bolt"],
+      "connectors": [
+        {
+          "position": [0.0302, 0, 0],
+          "type": "B"
+        }
+      ],
+      "symmetrical": true
+    },
+    "C_Lhinge_down_female": {
+      "file": "C_Lhinge_down_female-transformed.glb",
+      "printWeight": 150,
+      "extra": ["C_bolt"],
+      "connectors": [
+        {
+          "position": [0.0422, -0.01, -0.0013],
+          "type": "HL",
+          "customRotation": [0, -22.5, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "C_Lhinge_flat_female": {
+      "file": "C_Lhinge_flat_female-transformed.glb",
+      "printWeight": 150,
+      "extra": ["C_bolt"],
+      "connectors": [
+        {
+          "position": [0.035, -0.01, 0.008],
+          "type": "HL"
+        }
+      ],
+      "symmetrical": true
+    },
+    "C_Lhinge_up_female": {
+      "file": "C_Lhinge_up_female-transformed.glb",
+      "printWeight": 150,
+      "extra": ["C_bolt"],
+      "connectors": [
+        {
+          "position": [0.0361, -0.0026, 0.0161],
+          "type": "HL",
+          "customRotation": [0, 22.5, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "C_Rhinge_down_female": {
+      "file": "C_Rhinge_down_female-transformed.glb",
+      "printWeight": 150,
+      "extra": ["C_bolt"],
+      "connectors": [
+        {
+          "position": [0.0422, 0.0026, -0.0013],
+          "type": "HR",
+          "customRotation": [0, -22.5, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "C_Rhinge_flat_female": {
+      "file": "C_Rhinge_flat_female-transformed.glb",
+      "printWeight": 150,
+      "extra": ["C_bolt"],
+      "connectors": [
+        {
+          "position": [0.035, 0.0026, 0.008],
+          "type": "HR"
+        }
+      ],
+      "symmetrical": true
+    },
+    "C_Rhinge_up_female": {
+      "file": "C_Rhinge_up_female-transformed.glb",
+      "printWeight": 150,
+      "extra": ["C_bolt"],
+      "connectors": [
+        {
+          "position": [0.0361, 0.0026, 0.0161],
+          "type": "HR",
+          "customRotation": [0, 22.5, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    
+    "H_Lhinge_down_male": {
+      "file": "H_Lhinge_down_male-transformed.glb",
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": 0,
+        "max": -45,
+        "step": 0
+      },
+      "rotationAxis": "y",
+      "connectors": [
+        {
+          "position": [0.0395, 0.01, -0.015],
+          "type": "B",
+          "customRotation": [0, -22.5, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "H_Lhinge_flat_male": {
+      "file": "H_Lhinge_flat_male-transformed.glb",
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": 0,
+        "max": -45,
+        "step": 0
+      },
+      "rotationAxis": "y",
+      "connectors": [
+        {
+          "position": [0.035, 0.01, -0.008],
+          "type": "B"
+        }
+      ],
+      "symmetrical": true
+    },
+    "H_Lhinge_up_male": {
+      "file": "H_Lhinge_up_male-transformed.glb",
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": 0,
+        "max": -45,
+        "step": 0
+      },
+      "rotationAxis": "y",
+      "connectors": [
+        {
+          "position": [0.0395, 0.01, -0.001],
+          "type": "B",
+          "customRotation": [0, 22.5, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "H_Rhinge_down_male": {
+      "file": "H_Rhinge_down_male-transformed.glb",
+      "printWeight": 150,
+      "rotationLimits": {
+        "min": 0,
+        "max": 45,
+        "step": 0
+      },
+      "rotationAxis": "y",
+      "connectors": [
+        {
+          "position": [0.0395, -0.0026, -0.015],
+          "type": "B",
+          "customRotation": [0, -22.5, 0]
+        }
+      ],
+      "symmetrical": true
+    },
+    "H_Rhinge_flat_male": {
+      "file": "H_Rhinge_flat_male-transformed.glb",
       "printWeight": 150,
       "rotationLimits": {
         "min": 0,
@@ -99,23 +590,80 @@
       "connectors": [
         {
           "position": [0.035, -0.0026, -0.008],
-          "type": "D"
+          "type": "B"
         }
       ],
       "symmetrical": true
     },
-    "D_wing_end": {
-      "file": "D_wing_end-transformed.glb",
-      "extra": ["C_bolt"],
+    "H_Rhinge_up_male": {
+      "file": "H_Rhinge_up_male-transformed.glb",
       "printWeight": 150,
+      "rotationLimits": {
+        "min": 0,
+        "max": 45,
+        "step": 0
+      },
+      "rotationAxis": "y",
+      "connectors": [
+        {
+          "position": [0.0395, -0.0026, -0.001],
+          "type": "B",
+          "customRotation": [0, 22.5, 0]
+        }
+      ],
       "symmetrical": true
     }
   },
   "connectors": {
-    "A": ["A_arm_large"],
-    "B": ["B_arm_large"],
-    "C": ["C_connector", "C_flat_female"],
-    "E": ["E_flat_male"],
-    "D": ["D_wing_end"]
+    "A1": [
+      "A1_arm_static_angled_large",
+      "A1_arm_static_angled_medium",
+      "A1_arm_static_angled_small",
+      "A1_arm_static_flat_large",
+      "A1_arm_static_flat_medium",
+      "A1_arm_static_flat_small"
+    ],
+    "A2": [
+      "A2_arm_static_large",
+      "A2_arm_static_medium",
+      "A2_arm_static_small"
+    ],
+    "B": [
+      "B_arm_wing_end",
+      "B_arm_wing_large",
+      "B_arm_wing_medium",
+      "B_arm_wing_small",
+      "B_connector_elbow_22-5deg_A",
+      "B_connector_elbow_22-5deg_B",
+      "B_connector_elbow_45deg_A",
+      "B_connector_elbow_45deg_B",
+      "B_connector_elbow_90deg_A",
+      "B_connector_elbow_90deg_B",
+      "B_connector_elbow_flat",
+      "B_connector_splitter_equilateral",
+      "B_connector_splitter_Tpiece_A",
+      "B_connector_splitter_Tpiece_B",
+      "B_connector_splitter_Tpiece_C",
+      "B_connector_splitter_vampire"
+    ],
+    "C": [
+      "C_connector_coupler",
+      "C_Lhinge_down_female",
+      "C_Lhinge_flat_female",
+      "C_Lhinge_up_female",
+      "C_Rhinge_down_female",
+      "C_Rhinge_flat_female",
+      "C_Rhinge_up_female"
+    ],
+    "HL": [
+      "H_Lhinge_down_male",
+      "H_Lhinge_flat_male",
+      "H_Lhinge_up_male"
+    ],
+    "HR": [
+      "H_Rhinge_down_male",
+      "H_Rhinge_flat_male",
+      "H_Rhinge_up_male"
+    ]
   }
 }

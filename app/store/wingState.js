@@ -215,7 +215,7 @@ export const setPreset = (name, config) => {
 };
 
 export const presets = {
-  basic: createNode("A_arm_large", "z"),
+  basic: createNode("A1_arm_static_angled_large", "z"),
 };
 
 // --- Init ---
