@@ -72,6 +72,7 @@ export const state = proxy({
     empty: null,
   },
   basePresets: ["empty"],
+  cameraResetKey: 0,
 });
 
 // Re-export for compatibility if needed, though state.presets is preferred
@@ -256,6 +257,11 @@ export const setPreset = (name, config) => {
   state.rightWingRoot = JSON.parse(JSON.stringify(config));
   state.preset = name;
   state.active.path = null;
+};
+
+// --- Camera ---
+export const triggerCameraReset = () => {
+  state.cameraResetKey += 1;
 };
 
 // --- Init ---

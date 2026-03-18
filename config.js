@@ -22,4 +22,8 @@ export const config = {
       emissiveIntensity: 0.15,
     },
   },
+  camera: {
+    position: [0, 2, 5],
+    fov: 45,
+  },
 };

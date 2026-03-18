@@ -2,6 +2,7 @@
 
 import Scene from "@/components/3D/scene/Scene";
 import ConfiguratorPanel from "@/components/UI/ConfiguratorPanel";
+import HUDButtons from "@/components/UI/HUDButtons";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       {/* UI Overlay Layer */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         <ConfiguratorPanel />
+        <HUDButtons />
       </div>
 
       {/* Title / Info Overlay */}

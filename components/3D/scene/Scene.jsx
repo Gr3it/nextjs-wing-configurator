@@ -12,6 +12,8 @@ import { Suspense } from "react";
 import WingAssembly from "../wing/WingAssembly";
 import EscDeselect from "../../UI/EscDeselect";
 import Mannequin from "../mannequin/Mannequin";
+import CameraResetController from "./CameraResetController";
+import { config } from "@/config";
 
 // Suppress THREE.Clock warnings during development
 const originalWarn = console.warn;
@@ -25,13 +27,14 @@ console.warn = (...args) => {
 export default function Scene() {
   return (
     <div className="w-screen h-screen bg-slate-100">
-      <Canvas shadows camera={{ position: [2, 2, 5], fov: 45 }}>
+      <Canvas shadows camera={config.camera}>
         <Suspense fallback={null}>
           <Environment preset="city" />
           <Sky sunPosition={[100, 20, 100]} />
 
-          <Bounds fit observe margin={1.2}>
-            <Mannequin />
+          <Mannequin />
+          <Bounds fit margin={1.25}>
+            <CameraResetController />
             <WingAssembly />
           </Bounds>
 
