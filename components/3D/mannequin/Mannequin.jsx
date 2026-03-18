@@ -1,6 +1,6 @@
 "use client";
 import { useSnapshot } from "valtio";
-import { state } from "../../../store/wingState";
+import { state } from "@/store/wingState";
 import { Body } from "../../../models/Body";
 
 export default function Mannequin() {

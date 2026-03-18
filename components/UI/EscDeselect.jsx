@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { clearActive } from "../../store/wingState";
+import { clearActive } from "@/store/wingState";
 
 export default function EscDeselect() {
   useEffect(() => {

@@ -63,12 +63,52 @@ export const state = proxy({
   },
   backplateHeightRatio: 0.78,
   rightWingRoot: null,
-  preset: "basic",
+  preset: "empty",
   active: /** @type {ActiveState} */ ({
     path: null,
     isRight: true,
   }),
+  presets: {
+    empty: null,
+  },
+  basePresets: ["empty"],
 });
+
+// Re-export for compatibility if needed, though state.presets is preferred
+export const presets = state.presets;
+export const basePresets = state.basePresets;
+
+// --- Auto-generate Custom Profiles ---
+let isBatching = false;
+const handlePresetModification = () => {
+  if (state.preset === "custom") return;
+
+  if (!isBatching) {
+    isBatching = true;
+
+    // Solo i presets in basePresets generano una copia. Gli altri (custom o rinominati) si aggiornano sul posto.
+    const isBasePreset = state.basePresets.includes(state.preset);
+
+    if (isBasePreset) {
+      let baseName = state.preset;
+      let nextNum = 1;
+      let newName = `${baseName}_${nextNum}`;
+      while (presets[newName] !== undefined) {
+        nextNum++;
+        newName = `${baseName}_${nextNum}`;
+      }
+      // Aggiungi sincrono per UI
+      presets[newName] = null;
+      state.preset = newName;
+    }
+
+    // Salva alla fine del tick la struttura state finale
+    setTimeout(() => {
+      presets[state.preset] = JSON.parse(JSON.stringify(state.rightWingRoot));
+      isBatching = false;
+    }, 0);
+  }
+};
 
 // --- Active ---
 /**
@@ -101,7 +141,7 @@ export const addPiece = (path, pieceId) => {
   if (path.length === 0) {
     // Sostituisce la radice
     state.rightWingRoot = newNode;
-    state.preset = "custom";
+    handlePresetModification();
     return;
   }
 
@@ -120,7 +160,7 @@ export const addPiece = (path, pieceId) => {
 
   // Inserisce all'indice esatto del connettore per mantenere l'ordine
   parent.children[index] = newNode;
-  state.preset = "custom";
+  handlePresetModification();
 };
 
 // --- Remove ---
@@ -149,7 +189,7 @@ export const removePiece = (path) => {
     state.active.path = null;
   }
 
-  state.preset = "custom";
+  handlePresetModification();
 };
 
 // --- Rotation ---
@@ -160,7 +200,7 @@ export const removePiece = (path) => {
  */
 export const updateCurrentRotation = (storeNode, value) => {
   storeNode.rotation.current = value;
-  state.preset = "custom";
+  handlePresetModification();
 };
 
 /**
@@ -168,7 +208,7 @@ export const updateCurrentRotation = (storeNode, value) => {
  */
 export const updateBaseRotation = (storeNode, value) => {
   storeNode.rotation.base = value;
-  state.preset = "custom";
+  handlePresetModification();
 };
 
 /**
@@ -176,7 +216,7 @@ export const updateBaseRotation = (storeNode, value) => {
  */
 export const resetToBase = (storeNode) => {
   storeNode.rotation.current = storeNode.rotation.base;
-  state.preset = "custom";
+  handlePresetModification();
 };
 
 /**
@@ -184,7 +224,7 @@ export const resetToBase = (storeNode) => {
  */
 export const saveCurrentAsBase = (storeNode) => {
   storeNode.rotation.base = storeNode.rotation.current;
-  state.preset = "custom";
+  handlePresetModification();
 };
 
 /**
@@ -218,9 +258,5 @@ export const setPreset = (name, config) => {
   state.active.path = null;
 };
 
-export const presets = {
-  basic: createNode("A1_arm_static_angled_large", "z"),
-};
-
 // --- Init ---
-state.rightWingRoot = JSON.parse(JSON.stringify(presets["basic"]));
+state.rightWingRoot = JSON.parse(JSON.stringify(presets["empty"]));

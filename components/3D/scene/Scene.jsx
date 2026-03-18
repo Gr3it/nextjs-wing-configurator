@@ -8,9 +8,10 @@ import {
   ContactShadows,
 } from "@react-three/drei";
 import { Suspense } from "react";
-import Mannequin from "../mannequin/Mannequin";
+
 import WingAssembly from "../wing/WingAssembly";
 import EscDeselect from "../../UI/EscDeselect";
+import Mannequin from "../mannequin/Mannequin";
 
 // Suppress THREE.Clock warnings during development
 const originalWarn = console.warn;

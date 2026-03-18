@@ -1,8 +1,8 @@
 "use client";
 import { Html } from "@react-three/drei";
 import { useEffect, useRef } from "react";
-import piecesData from "../../data/pieces.json";
-import { addPiece } from "../../store/wingState";
+import piecesData from "@/data/pieces.json";
+import { addPiece } from "@/store/wingState";
 
 /**
  * PieceAddMenu
@@ -15,7 +15,7 @@ import { addPiece } from "../../store/wingState";
  *  connectorIndex — index of the connector in the parent node
  *  onClose        — callback to close the menu
  */
-export default function PieceAddMenu({
+export default function AddMenu({
   connectorType,
   parentPath,
   connectorIndex,
@@ -115,7 +115,7 @@ export default function PieceAddMenu({
               gap: "8px",
             }}
           >
-            {compatiblePieces.map(({ id, info }) => (
+            {compatiblePieces.map(({ id }) => (
               <button
                 key={id}
                 onPointerDown={() => handleSelect(id)}

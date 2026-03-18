@@ -1,8 +1,8 @@
 "use client";
-import piecesData from "../../data/pieces.json";
+import piecesData from "@/data/pieces.json";
 import { Html } from "@react-three/drei";
 
-export default function PieceSelectMenu({ connectorType, onSelect, onClose }) {
+export default function SelectMenu({ connectorType, onSelect, onClose }) {
   // Use the compatibility map directly from pieces.json
   const compatiblePieceIds = piecesData.connectors[connectorType] || [];
 

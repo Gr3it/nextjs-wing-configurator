@@ -1,6 +1,7 @@
 "use client";
-import Scene from "./components/3D/scene/Scene";
-import ConfiguratorPanel from "./components/UI/ConfiguratorPanel";
+
+import Scene from "@/components/3D/scene/Scene";
+import ConfiguratorPanel from "@/components/UI/ConfiguratorPanel";
 
 export default function Home() {
   return (
