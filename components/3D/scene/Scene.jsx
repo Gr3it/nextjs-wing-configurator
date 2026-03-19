@@ -15,15 +15,6 @@ import Mannequin from "../mannequin/Mannequin";
 import CameraResetController from "./CameraResetController";
 import { config } from "@/config";
 
-// Suppress THREE.Clock warnings during development
-const originalWarn = console.warn;
-console.warn = (...args) => {
-  if (typeof args[0] === "string" && args[0].includes("THREE.Clock")) {
-    console.trace("THREE.Clock warning origin 👇");
-  }
-  originalWarn(...args);
-};
-
 export default function Scene() {
   return (
     <div className="w-screen h-screen bg-slate-100">
@@ -33,7 +24,7 @@ export default function Scene() {
           <Sky sunPosition={[100, 20, 100]} />
 
           <Mannequin />
-          <Bounds fit margin={1.25}>
+          <Bounds fit>
             <CameraResetController />
             <WingAssembly />
           </Bounds>

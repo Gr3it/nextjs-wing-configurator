@@ -3,7 +3,6 @@ import { Html } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import piecesData from "@/data/pieces.json";
 import { addPiece } from "@/store/wingState";
-import placeholderImage from '@/placeholder_image.png';
 
 /**
  * PieceAddMenu
@@ -38,8 +37,8 @@ export default function AddMenu({
   // Compatible pieces for this connector type
   const compatiblePieceIds = piecesData.connectors[connectorType] ?? [];
   const compatiblePieces = compatiblePieceIds
-    .map((id) => ({ id, info: piecesData.pieces[id] }))
-    .filter(({ info }) => !!info);
+    .map((id) => ({ id, piece: piecesData.pieces[id] }))
+    .filter(({ piece }) => !!piece);
 
   const handleSelect = (pieceId) => {
     let targetPath;
@@ -52,19 +51,33 @@ export default function AddMenu({
   return (
     <Html center zIndexRange={[100, 0]} style={{ pointerEvents: "none" }}>
       <div
+        id="add-menu-container"
         ref={menuRef}
         onPointerDown={(e) => e.stopPropagation()}
+        onPointerMove={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
         style={{
           pointerEvents: "auto",
           background: "#1a1a1a",
           border: "1px solid #333",
-          borderRadius: "10px",
-          padding: "12px",
-          minWidth: "180px",
+          borderRadius: "12px",
+          padding: "14px",
+          minWidth: connectorType === "B" ? "650px" : "500px",
+          maxHeight: "80vh",
+          overflowY: "auto",
           boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
           userSelect: "none",
         }}
       >
+        <style>{`
+          #add-menu-container {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+          }
+          #add-menu-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+          }
+        `}</style>
         {/* Header */}
         <div
           style={{
@@ -77,7 +90,7 @@ export default function AddMenu({
           <span
             style={{
               color: "#888",
-              fontSize: "10px",
+              fontSize: "11px",
               letterSpacing: "0.1em",
               textTransform: "uppercase",
               fontFamily: "monospace",
@@ -92,7 +105,7 @@ export default function AddMenu({
               border: "none",
               color: "#555",
               cursor: "pointer",
-              fontSize: "14px",
+              fontSize: "16px",
               lineHeight: 1,
               padding: "0 2px",
             }}
@@ -112,26 +125,31 @@ export default function AddMenu({
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "8px",
+              gridTemplateColumns: `repeat(${connectorType === "B" ? 4 : 3}, 1fr)`,
+              gap: "10px",
             }}
           >
-            {compatiblePieces.map(({ id }) => (
+            {compatiblePieces.map(({ id, piece }) => (
               <button
                 key={id}
                 onPointerDown={() => handleSelect(id)}
                 style={{
                   background: "#242424",
                   border: "1px solid #383838",
-                  borderRadius: "7px",
+                  borderRadius: "8px",
                   color: "#ddd",
                   cursor: "pointer",
-                  padding: "10px 8px",
-                  fontSize: "11px",
+                  padding: "12px 10px",
+                  fontSize: "13px",
                   fontFamily: "monospace",
                   textAlign: "center",
                   lineHeight: 1.4,
                   transition: "background 0.15s, border-color 0.15s",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  minHeight: "140px",
                 }}
                 onPointerEnter={(e) => {
                   e.currentTarget.style.background = "#2e2e2e";
@@ -142,8 +160,33 @@ export default function AddMenu({
                   e.currentTarget.style.borderColor = "#383838";
                 }}
               >
-                <div style={{ fontSize: "18px", marginBottom: "4px" }}>⬡</div>
-                <div style={{ color: "#aaa", fontSize: "10px" }}>{piecesData.pieces[id].displayName}</div>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "4px",
+                  }}
+                >
+                  {piece.previewImg ? (
+                    <img
+                      src={piece.previewImg}
+                      alt={piece.label}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
+                      }}
+                    />
+                  ) : (
+                    <span style={{ fontSize: "42px" }}>⬡</span>
+                  )}
+                </div>
+                <div style={{ color: "#aaa", fontSize: "11px" }}>
+                  {piece.labelnameOverride || piece.label}
+                </div>
               </button>
             ))}
           </div>

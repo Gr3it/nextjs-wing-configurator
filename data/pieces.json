@@ -3,54 +3,55 @@
     "folder": "models/parts/"
   },
   "pieces": {
-    
     "backplate_clip": {
-      "displayName": "Backplate clip",
-      "actualName": "Backplate clip",
+      "label": "Backplate clip",
       "printWeight": 11
     },
     "backplate_mount": {
-      "displayName": "Backplate mount",
-      "actualName": "Backplate mount",
+      "label": "Backplate mount",
       "printWeight": 13
     },
     "backplate": {
       "file": "backplate-transformed.glb",
-      "displayName": "Backplate",
-      "actualName": "Backplate",
-      "extra": ["backplate_clip","backplate_clip","backplate_clip","backplate_clip","backplate_mount","backplate_mount"],
+      "label": "Backplate",
+      "extra": [
+        "backplate_clip",
+        "backplate_clip",
+        "backplate_clip",
+        "backplate_clip",
+        "backplate_mount",
+        "backplate_mount"
+      ],
       "printWeight": 156,
       "connectors": [
         {
           "position": [0.07, -0.028, 0.01],
           "type": "A1"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/backplate.png"
     },
-
     "A_bolt": {
       "file": "A_bolt-transformed.glb",
-      "displayName": "Static bolt",
-      "actualName": "Static bolt",
-      "printWeight": 2
+      "label": "Static bolt",
+      "printWeight": 2,
+      "previewImg": "/images/parts/A_bolt.png"
     },
     "B_bolt": {
       "file": "B_bolt-transformed.glb",
-      "displayName": "Static bolt",
-      "actualName": "Static bolt",
-      "printWeight": 2
+      "label": "Static bolt",
+      "printWeight": 2,
+      "previewImg": "/images/parts/B_bolt.png"
     },
     "C_bolt": {
       "file": "C_bolt-transformed.glb",
-      "displayName": "Connector bolt",
-      "actualName": "Connector bolt",
-      "printWeight": 14
+      "label": "Connector bolt",
+      "printWeight": 14,
+      "previewImg": "/images/parts/C_bolt.png"
     },
-
     "A1_arm_static_angled_large": {
       "file": "A1_arm_static_angled_large-transformed.glb",
-      "displayName": "Static arm - angled large",
-      "actualName": "Static arm - angled large",
+      "label": "Static arm | angled large",
       "extra": ["A_bolt"],
       "printWeight": 81,
       "source": "A1",
@@ -59,12 +60,12 @@
           "position": [0.2367, -0.088, 0],
           "type": "A2"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/A1_arm_static_angled_large.png"
     },
     "A1_arm_static_angled_medium": {
       "file": "A1_arm_static_angled_medium-transformed.glb",
-      "displayName": "Static arm - angled medium",
-      "actualName": "Static arm - angled medium",
+      "label": "Static arm | angled medium",
       "extra": ["A_bolt"],
       "printWeight": 73,
       "source": "A1",
@@ -73,12 +74,12 @@
           "position": [0.2052, -0.0728, 0],
           "type": "A2"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/A1_arm_static_angled_medium.png"
     },
     "A1_arm_static_angled_small": {
       "file": "A1_arm_static_angled_small-transformed.glb",
-      "displayName": "Static arm - angled small",
-      "actualName": "Static arm - angled small",
+      "label": "Static arm | angled small",
       "extra": ["A_bolt"],
       "printWeight": 64,
       "source": "A1",
@@ -87,12 +88,12 @@
           "position": [0.1736, -0.0576, 0],
           "type": "A2"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/A1_arm_static_angled_small.png"
     },
     "A1_arm_static_flat_large": {
       "file": "A1_arm_static_flat_large-transformed.glb",
-      "displayName": "Static arm - flat large",
-      "actualName": "Static arm - flat large",
+      "label": "Static arm | flat large",
       "extra": ["A_bolt"],
       "printWeight": 87,
       "source": "A1",
@@ -101,12 +102,12 @@
           "position": [0.2771, 0, 0],
           "type": "A2"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/A1_arm_static_flat_large.png"
     },
     "A1_arm_static_flat_medium": {
       "file": "A1_arm_static_flat_medium-transformed.glb",
-      "displayName": "Static arm - flat medium",
-      "actualName": "Static arm - flat medium",
+      "label": "Static arm | flat medium",
       "extra": ["A_bolt"],
       "printWeight": 74,
       "source": "A1",
@@ -115,12 +116,12 @@
           "position": [0.2276, 0, 0],
           "type": "A2"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/A1_arm_static_flat_medium.png"
     },
     "A1_arm_static_flat_small": {
       "file": "A1_arm_static_flat_small-transformed.glb",
-      "displayName": "Static arm - flat small",
-      "actualName": "Static arm - flat small",
+      "label": "Static arm | flat small",
       "extra": ["A_bolt"],
       "printWeight": 61,
       "source": "A1",
@@ -129,13 +130,12 @@
           "position": [0.1782, 0, 0],
           "type": "A2"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/A1_arm_static_flat_small.png"
     },
-
     "A2_arm_static_large": {
       "file": "A2_arm_static_large-transformed.glb",
-      "displayName": "Starter arm - large",
-      "actualName": "Starter arm - large",
+      "label": "Starter arm | large",
       "extra": ["B_bolt"],
       "printWeight": 49,
       "source": "A2",
@@ -144,12 +144,12 @@
           "position": [0.2791, -0.017, 0],
           "type": "C"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/A2_arm_static_large.png"
     },
     "A2_arm_static_medium": {
       "file": "A2_arm_static_medium-transformed.glb",
-      "displayName": "Starter arm - medium",
-      "actualName": "Starter arm - medium",
+      "label": "Starter arm | medium",
       "extra": ["B_bolt"],
       "printWeight": 44,
       "source": "A2",
@@ -158,12 +158,12 @@
           "position": [0.2296, -0.017, 0],
           "type": "C"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/A2_arm_static_medium.png"
     },
     "A2_arm_static_small": {
       "file": "A2_arm_static_small-transformed.glb",
-      "displayName": "Starter arm - small",
-      "actualName": "Starter arm - small",
+      "label": "Starter arm | small",
       "extra": ["B_bolt"],
       "printWeight": 39,
       "source": "A2",
@@ -172,21 +172,20 @@
           "position": [0.1801, -0.017, 0],
           "type": "C"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/A2_arm_static_small.png"
     },
-
     "B_arm_wing_end": {
       "file": "B_arm_wing_end-transformed.glb",
-      "displayName": "Arm - end",
-      "actualName": "Arm - end",
+      "label": "Arm | end",
       "extra": ["C_bolt"],
       "printWeight": 15,
-      "source": "B"
+      "source": "B",
+      "previewImg": "/images/parts/B_arm_wing_end.png"
     },
     "B_arm_wing_large": {
       "file": "B_arm_wing_large-transformed.glb",
-      "displayName": "Arm - large",
-      "actualName": "Arm - large",
+      "label": "Arm | large",
       "extra": ["C_bolt"],
       "printWeight": 34,
       "source": "B",
@@ -195,12 +194,12 @@
           "position": [0.29, 0, 0],
           "type": "C"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_arm_wing_large.png"
     },
     "B_arm_wing_medium": {
       "file": "B_arm_wing_medium-transformed.glb",
-      "displayName": "Arm - medium",
-      "actualName": "Arm - medium",
+      "label": "Arm | medium",
       "extra": ["C_bolt"],
       "printWeight": 30,
       "source": "B",
@@ -209,12 +208,12 @@
           "position": [0.24, 0, 0],
           "type": "C"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_arm_wing_medium.png"
     },
     "B_arm_wing_small": {
       "file": "B_arm_wing_small-transformed.glb",
-      "displayName": "Arm - small",
-      "actualName": "Arm - small",
+      "label": "Arm | small",
       "extra": ["C_bolt"],
       "printWeight": 25,
       "source": "B",
@@ -223,12 +222,13 @@
           "position": [0.19, 0, 0],
           "type": "C"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_arm_wing_small.png"
     },
     "B_connector_elbow_22-5deg_A": {
       "file": "B_connector_elbow_22-5deg_A-transformed.glb",
-      "displayName": "Elbow - 22,5° down",
-      "actualName": "Elbow - 22,5°",
+      "labelnameOverride": "Elbow | 22,5° down",
+      "label": "Elbow | 22,5°",
       "extra": ["C_bolt"],
       "printWeight": 11,
       "source": "B",
@@ -238,12 +238,13 @@
           "type": "C",
           "customRotation": [0, 22.5, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_elbow_22-5deg_A.png"
     },
     "B_connector_elbow_22-5deg_B": {
       "file": "B_connector_elbow_22-5deg_B-transformed.glb",
-      "displayName": "Elbow - 22,5° up",
-      "actualName": "Elbow - 22,5°",
+      "labelnameOverride": "Elbow | 22,5° up",
+      "label": "Elbow | 22,5°",
       "extra": ["C_bolt"],
       "printWeight": 11,
       "source": "B",
@@ -253,12 +254,13 @@
           "type": "C",
           "customRotation": [0, -22.5, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_elbow_22-5deg_B.png"
     },
     "B_connector_elbow_45deg_A": {
       "file": "B_connector_elbow_45deg_A-transformed.glb",
-      "displayName": "Elbow - 45° down",
-      "actualName": "Elbow - 45°",
+      "labelnameOverride": "Elbow | 45° down",
+      "label": "Elbow | 45°",
       "extra": ["C_bolt"],
       "printWeight": 12,
       "source": "B",
@@ -268,12 +270,13 @@
           "type": "C",
           "customRotation": [0, 45, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_elbow_45deg_A.png"
     },
     "B_connector_elbow_45deg_B": {
       "file": "B_connector_elbow_45deg_B-transformed.glb",
-      "displayName": "Elbow - 45° up",
-      "actualName": "Elbow - 45°",
+      "labelnameOverride": "Elbow | 45° up",
+      "label": "Elbow | 45°",
       "extra": ["C_bolt"],
       "printWeight": 12,
       "source": "B",
@@ -283,12 +286,13 @@
           "type": "C",
           "customRotation": [0, -45, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_elbow_45deg_B.png"
     },
     "B_connector_elbow_90deg_A": {
       "file": "B_connector_elbow_90deg_A-transformed.glb",
-      "displayName": "Elbow - 90° down",
-      "actualName": "Elbow - 90°",
+      "labelnameOverride": "Elbow | 90° down",
+      "label": "Elbow | 90°",
       "extra": ["C_bolt"],
       "printWeight": 13,
       "source": "B",
@@ -298,12 +302,13 @@
           "type": "C",
           "customRotation": [0, 90, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_elbow_90deg_A.png"
     },
     "B_connector_elbow_90deg_B": {
       "file": "B_connector_elbow_90deg_B-transformed.glb",
-      "displayName": "Elbow - 90° up",
-      "actualName": "Elbow - 90°",
+      "labelnameOverride": "Elbow | 90° up",
+      "label": "Elbow | 90°",
       "extra": ["C_bolt"],
       "printWeight": 13,
       "source": "B",
@@ -313,12 +318,12 @@
           "type": "C",
           "customRotation": [0, -90, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_elbow_90deg_B.png"
     },
     "B_connector_elbow_flat": {
       "file": "B_connector_elbow_flat-transformed.glb",
-      "displayName": "Elbow - 0°",
-      "actualName": "Elbow - 0°",
+      "label": "Elbow | 0°",
       "extra": ["C_bolt"],
       "printWeight": 10,
       "source": "B",
@@ -327,12 +332,12 @@
           "position": [0.03, 0, 0],
           "type": "C"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_elbow_flat.png"
     },
     "B_connector_splitter_equilateral": {
       "file": "B_connector_splitter_equilateral-transformed.glb",
-      "displayName": "Splitter - equilateral (120°)",
-      "actualName": "Splitter - equilateral (120°)",
+      "label": "Splitter | equilateral (120°)",
       "extra": ["C_bolt"],
       "printWeight": 18,
       "source": "B",
@@ -347,12 +352,13 @@
           "type": "C",
           "customRotation": [0, 60, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_splitter_equilateral.png"
     },
     "B_connector_splitter_Tpiece_A": {
       "file": "B_connector_splitter_Tpiece_A-transformed.glb",
-      "displayName": "Splitter - T-piece (up & down)",
-      "actualName": "Splitter - T-piece",
+      "labelnameOverride": "Splitter | T-piece (up & down)",
+      "label": "Splitter | T-piece",
       "extra": ["C_bolt"],
       "printWeight": 17,
       "source": "B",
@@ -367,12 +373,13 @@
           "type": "C",
           "customRotation": [0, 90, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_splitter_Tpiece_A.png"
     },
     "B_connector_splitter_Tpiece_B": {
       "file": "B_connector_splitter_Tpiece_B-transformed.glb",
-      "displayName": "Splitter - T-piece (up & forward)",
-      "actualName": "Splitter - T-piece",
+      "labelnameOverride": "Splitter | T-piece (up & forward)",
+      "label": "Splitter | T-piece",
       "extra": ["C_bolt"],
       "printWeight": 17,
       "source": "B",
@@ -386,12 +393,13 @@
           "type": "C",
           "customRotation": [0, -90, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_splitter_Tpiece_B.png"
     },
     "B_connector_splitter_Tpiece_C": {
       "file": "B_connector_splitter_Tpiece_C-transformed.glb",
-      "displayName": "Splitter - T-piece (down & forward)",
-      "actualName": "Splitter - T-piece",
+      "labelnameOverride": "Splitter | T-piece (down & forward)",
+      "label": "Splitter | T-piece",
       "extra": ["C_bolt"],
       "printWeight": 17,
       "source": "B",
@@ -405,12 +413,12 @@
           "type": "C",
           "customRotation": [0, 90, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_splitter_Tpiece_C.png"
     },
     "B_connector_splitter_vampire": {
       "file": "B_connector_splitter_vampire-transformed.glb",
-      "displayName": "Splitter - multi 45°",
-      "actualName": "Splitter - multi 45°",
+      "label": "Splitter | multi 45°",
       "extra": ["C_bolt"],
       "printWeight": 20,
       "source": "B",
@@ -429,13 +437,12 @@
           "type": "C",
           "customRotation": [0, 45, 0]
         }
-      ]
+      ],
+      "previewImg": "/images/parts/B_connector_splitter_vampire.png"
     },
-
     "C_connector_coupler": {
       "file": "C_connector_coupler-transformed.glb",
-      "displayName": "Connector - static",
-      "actualName": "Connector - static",
+      "label": "Connector | static",
       "printWeight": 4,
       "extra": ["C_bolt"],
       "source": "C",
@@ -444,12 +451,13 @@
           "position": [0.0302, 0, 0],
           "type": "B"
         }
-      ]
+      ],
+      "previewImg": "/images/parts/C_connector_coupler.png"
     },
     "C_Lhinge_down_female": {
       "file": "C_Lhinge_down_female-transformed.glb",
-      "displayName": "Hinge - -22,5° backward",
-      "actualName": "Hinge - L -22,5° female",
+      "labelnameOverride": "Hinge | -22,5° backward",
+      "label": "Hinge | L -22,5° female",
       "printWeight": 9,
       "extra": ["C_bolt"],
       "source": "C",
@@ -460,12 +468,13 @@
           "customRotation": [0, 22.5, 0]
         }
       ],
-      "symmetrical": "C_Rhinge_down_female"
+      "symmetrical": "C_Rhinge_down_female",
+      "previewImg": "/images/parts/C_Lhinge_down_female.png"
     },
     "C_Lhinge_flat_female": {
       "file": "C_Lhinge_flat_female-transformed.glb",
-      "displayName": "Hinge - 0° backward",
-      "actualName": "Hinge - L 0° female",
+      "labelnameOverride": "Hinge | 0° backward",
+      "label": "Hinge | L 0° female",
       "printWeight": 8,
       "extra": ["C_bolt"],
       "source": "C",
@@ -475,12 +484,13 @@
           "type": "HL"
         }
       ],
-      "symmetrical": "C_Rhinge_flat_female"
+      "symmetrical": "C_Rhinge_flat_female",
+      "previewImg": "/images/parts/C_Lhinge_flat_female.png"
     },
     "C_Lhinge_up_female": {
       "file": "C_Lhinge_up_female-transformed.glb",
-      "displayName": "Hinge - 22,5° backward",
-      "actualName": "Hinge - L 22,5° female",
+      "labelnameOverride": "Hinge | 22,5° backward",
+      "label": "Hinge | L 22,5° female",
       "printWeight": 9,
       "extra": ["C_bolt"],
       "source": "C",
@@ -491,12 +501,13 @@
           "customRotation": [0, -22.5, 0]
         }
       ],
-      "symmetrical": "C_Rhinge_up_female"
+      "symmetrical": "C_Rhinge_up_female",
+      "previewImg": "/images/parts/C_Lhinge_up_female.png"
     },
     "C_Rhinge_down_female": {
       "file": "C_Rhinge_down_female-transformed.glb",
-      "displayName": "Hinge - -22,5° forward",
-      "actualName": "Hinge - R -22,5° female",
+      "labelnameOverride": "Hinge | -22,5° forward",
+      "label": "Hinge | R -22,5° female",
       "printWeight": 9,
       "extra": ["C_bolt"],
       "source": "C",
@@ -507,12 +518,13 @@
           "customRotation": [0, 22.5, 0]
         }
       ],
-      "symmetrical": "C_Lhinge_down_female"
+      "symmetrical": "C_Lhinge_down_female",
+      "previewImg": "/images/parts/C_Rhinge_down_female.png"
     },
     "C_Rhinge_flat_female": {
       "file": "C_Rhinge_flat_female-transformed.glb",
-      "displayName": "Hinge - 0° forward",
-      "actualName": "Hinge - R 0° female",
+      "labelnameOverride": "Hinge | 0° forward",
+      "label": "Hinge | R 0° female",
       "printWeight": 8,
       "extra": ["C_bolt"],
       "source": "C",
@@ -522,12 +534,13 @@
           "type": "HR"
         }
       ],
-      "symmetrical": "C_Lhinge_flat_female"
+      "symmetrical": "C_Lhinge_flat_female",
+      "previewImg": "/images/parts/C_Rhinge_flat_female.png"
     },
     "C_Rhinge_up_female": {
       "file": "C_Rhinge_up_female-transformed.glb",
-      "displayName": "Hinge - 22,5° forward",
-      "actualName": "Hinge - R 22,5° female",
+      "labelnameOverride": "Hinge | 22,5° forward",
+      "label": "Hinge | R 22,5° female",
       "printWeight": 9,
       "extra": ["C_bolt"],
       "source": "C",
@@ -538,13 +551,13 @@
           "customRotation": [0, -22.5, 0]
         }
       ],
-      "symmetrical": "C_Lhinge_up_female"
+      "symmetrical": "C_Lhinge_up_female",
+      "previewImg": "/images/parts/C_Rhinge_up_female.png"
     },
-
     "H_Lhinge_down_male": {
       "file": "H_Lhinge_down_male-transformed.glb",
-      "displayName": "Hinge - -22,5°",
-      "actualName": "Hinge - L -22,5° male",
+      "labelnameOverride": "Hinge | -22,5°",
+      "label": "Hinge | L -22,5° male",
       "printWeight": 8,
       "source": "HL",
       "connectors": [
@@ -554,12 +567,13 @@
           "customRotation": [0, 22.5, 0]
         }
       ],
-      "symmetrical": "H_Rhinge_down_male"
+      "symmetrical": "H_Rhinge_down_male",
+      "previewImg": "/images/parts/H_Lhinge_down_male.png"
     },
     "H_Lhinge_flat_male": {
       "file": "H_Lhinge_flat_male-transformed.glb",
-      "displayName": "Hinge - 0°",
-      "actualName": "Hinge - L 0° male",
+      "labelnameOverride": "Hinge | 0°",
+      "label": "Hinge | L 0° male",
       "printWeight": 7,
       "source": "HL",
       "connectors": [
@@ -568,12 +582,13 @@
           "type": "B"
         }
       ],
-      "symmetrical": "H_Rhinge_flat_male"
+      "symmetrical": "H_Rhinge_flat_male",
+      "previewImg": "/images/parts/H_Lhinge_flat_male.png"
     },
     "H_Lhinge_up_male": {
       "file": "H_Lhinge_up_male-transformed.glb",
-      "displayName": "Hinge - 22,5°",
-      "actualName": "Hinge - L 22,5° male",
+      "labelnameOverride": "Hinge | 22,5°",
+      "label": "Hinge | L 22,5° male",
       "printWeight": 8,
       "source": "HL",
       "connectors": [
@@ -583,12 +598,13 @@
           "customRotation": [0, 22.5, 0]
         }
       ],
-      "symmetrical": "H_Rhinge_up_male"
+      "symmetrical": "H_Rhinge_up_male",
+      "previewImg": "/images/parts/H_Lhinge_up_male.png"
     },
     "H_Rhinge_down_male": {
       "file": "H_Rhinge_down_male-transformed.glb",
-      "displayName": "Hinge - -22,5°",
-      "actualName": "Hinge - R -22,5° male",
+      "labelnameOverride": "Hinge | -22,5°",
+      "label": "Hinge | R -22,5° male",
       "printWeight": 8,
       "source": "HR",
       "connectors": [
@@ -598,12 +614,13 @@
           "customRotation": [0, 22.5, 0]
         }
       ],
-      "symmetrical": "H_Lhinge_down_male"
+      "symmetrical": "H_Lhinge_down_male",
+      "previewImg": "/images/parts/H_Rhinge_down_male.png"
     },
     "H_Rhinge_flat_male": {
       "file": "H_Rhinge_flat_male-transformed.glb",
-      "displayName": "Hinge - 0°",
-      "actualName": "Hinge - R 0° male",
+      "labelnameOverride": "Hinge | 0°",
+      "label": "Hinge | R 0° male",
       "printWeight": 7,
       "source": "HR",
       "connectors": [
@@ -612,12 +629,13 @@
           "type": "B"
         }
       ],
-      "symmetrical": "H_Lhinge_flat_male"
+      "symmetrical": "H_Lhinge_flat_male",
+      "previewImg": "/images/parts/H_Rhinge_flat_male.png"
     },
     "H_Rhinge_up_male": {
       "file": "H_Rhinge_up_male-transformed.glb",
-      "displayName": "Hinge - 22,5°",
-      "actualName": "Hinge - R 22,5° male",
+      "labelnameOverride": "Hinge | 22,5°",
+      "label": "Hinge | R 22,5° male",
       "printWeight": 8,
       "source": "HR",
       "connectors": [
@@ -627,10 +645,10 @@
           "customRotation": [0, -22.5, 0]
         }
       ],
-      "symmetrical": "H_Lhinge_up_male"
+      "symmetrical": "H_Lhinge_up_male",
+      "previewImg": "/images/parts/H_Rhinge_up_male.png"
     }
   },
-
   "connectors": {
     "A1": [
       "A1_arm_static_angled_large",
@@ -664,22 +682,41 @@
       "B_connector_splitter_vampire"
     ],
     "C": [
-      "C_connector_coupler",
       "C_Lhinge_down_female",
       "C_Lhinge_flat_female",
       "C_Lhinge_up_female",
       "C_Rhinge_down_female",
       "C_Rhinge_flat_female",
-      "C_Rhinge_up_female"
+      "C_Rhinge_up_female",
+      "C_connector_coupler"
     ],
     "HL": ["H_Lhinge_down_male", "H_Lhinge_flat_male", "H_Lhinge_up_male"],
     "HR": ["H_Rhinge_down_male", "H_Rhinge_flat_male", "H_Rhinge_up_male"]
   },
-
   "connectorRotationLimits": {
-    "A1": { "min": -90, "max": 45, "step": 45, "axis": "z" },
-    "A2": { "min": -180, "max": 180, "step": 45, "axis": "z" },
-    "HL": { "min": -45, "max": 0, "step": 0, "axis": "y" },
-    "HR": { "min": 0, "max": 45, "step": 0, "axis": "y" }
+    "A1": {
+      "min": -90,
+      "max": 45,
+      "step": 45,
+      "axis": "z"
+    },
+    "A2": {
+      "min": -180,
+      "max": 180,
+      "step": 45,
+      "axis": "z"
+    },
+    "HL": {
+      "min": -45,
+      "max": 0,
+      "step": 0,
+      "axis": "y"
+    },
+    "HR": {
+      "min": 0,
+      "max": 45,
+      "step": 0,
+      "axis": "y"
+    }
   }
 }
