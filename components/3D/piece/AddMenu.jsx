@@ -3,6 +3,7 @@ import { Html } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import piecesData from "@/data/pieces.json";
 import { addPiece } from "@/store/wingState";
+import placeholderImage from '@/placeholder_image.png';
 
 /**
  * PieceAddMenu
@@ -142,7 +143,7 @@ export default function AddMenu({
                 }}
               >
                 <div style={{ fontSize: "18px", marginBottom: "4px" }}>⬡</div>
-                <div style={{ color: "#aaa", fontSize: "10px" }}>{id}</div>
+                <div style={{ color: "#aaa", fontSize: "10px" }}>{piecesData.pieces[id].displayName}</div>
               </button>
             ))}
           </div>
