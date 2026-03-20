@@ -91,7 +91,11 @@ export default function WingNode({
     }
 
     return (
-      <group key={idx} position={connPos} rotation={connRot}>
+      <group
+        key={`${childNode.piece}-${idx}`}
+        position={connPos}
+        rotation={connRot}
+      >
         <WingNode node={childNode} path={[...path, idx]} isRight={isRight} />
       </group>
     );

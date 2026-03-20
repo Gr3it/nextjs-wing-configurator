@@ -1,0 +1,247 @@
+{
+  "name": "angel",
+  "config": {
+    "piece": "A1_arm_static_angled_medium",
+    "rotation": {
+      "base": 0,
+      "current": 0
+    },
+    "children": [
+      {
+        "piece": "A2_arm_static_medium",
+        "rotation": {
+          "base": 0.7853981633974483,
+          "current": 0.7853981633974483
+        },
+        "children": [
+          {
+            "piece": "C_Rhinge_flat_female",
+            "rotation": {
+              "base": 0,
+              "current": 0
+            },
+            "children": [
+              {
+                "piece": "H_Rhinge_up_male",
+                "rotation": {
+                  "base": 0.36411073009925066,
+                  "current": 0.36411073009925066
+                },
+                "children": [
+                  {
+                    "piece": "B_arm_wing_small",
+                    "rotation": {
+                      "base": null,
+                      "current": null
+                    },
+                    "children": [
+                      {
+                        "piece": "C_Rhinge_down_female",
+                        "rotation": {
+                          "base": 0,
+                          "current": 0
+                        },
+                        "children": [
+                          {
+                            "piece": "H_Rhinge_flat_male",
+                            "rotation": {
+                              "base": 0,
+                              "current": 0
+                            },
+                            "children": [
+                              {
+                                "piece": "B_connector_splitter_Tpiece_C",
+                                "rotation": {
+                                  "base": 0,
+                                  "current": 0
+                                },
+                                "children": [
+                                  {
+                                    "piece": "C_connector_coupler",
+                                    "rotation": {},
+                                    "children": [
+                                      {
+                                        "piece": "B_connector_elbow_45deg_A",
+                                        "rotation": {
+                                          "base": 0,
+                                          "current": 0
+                                        },
+                                        "children": [
+                                          {
+                                            "piece": "C_Rhinge_down_female",
+                                            "rotation": {
+                                              "base": 0,
+                                              "current": 0
+                                            },
+                                            "children": [
+                                              {
+                                                "piece": "H_Rhinge_down_male",
+                                                "rotation": {
+                                                  "base": 0.417439352125924,
+                                                  "current": 0.417439352125924
+                                                },
+                                                "children": [
+                                                  {
+                                                    "piece": "B_arm_wing_large",
+                                                    "rotation": {
+                                                      "base": 0,
+                                                      "current": 0
+                                                    },
+                                                    "children": [
+                                                      {
+                                                        "piece": "C_connector_coupler",
+                                                        "rotation": {
+                                                          "base": 0,
+                                                          "current": 0
+                                                        },
+                                                        "children": [
+                                                          {
+                                                            "piece": "B_connector_elbow_22-5deg_A",
+                                                            "rotation": {
+                                                              "base": 0,
+                                                              "current": 0
+                                                            },
+                                                            "children": [
+                                                              {
+                                                                "piece": "C_connector_coupler",
+                                                                "rotation": {
+                                                                  "base": 0,
+                                                                  "current": 0
+                                                                },
+                                                                "children": [
+                                                                  {
+                                                                    "piece": "B_arm_wing_small",
+                                                                    "rotation": {
+                                                                      "base": 0,
+                                                                      "current": 0
+                                                                    },
+                                                                    "children": [
+                                                                      {
+                                                                        "piece": "C_connector_coupler",
+                                                                        "rotation": {
+                                                                          "base": 0,
+                                                                          "current": 0
+                                                                        },
+                                                                        "children": [
+                                                                          {
+                                                                            "piece": "B_connector_elbow_22-5deg_A",
+                                                                            "rotation": {
+                                                                              "base": 0,
+                                                                              "current": 0
+                                                                            },
+                                                                            "children": [
+                                                                              {
+                                                                                "piece": "C_connector_coupler",
+                                                                                "rotation": {
+                                                                                  "base": 0,
+                                                                                  "current": 0
+                                                                                },
+                                                                                "children": [
+                                                                                  {
+                                                                                    "piece": "B_arm_wing_end",
+                                                                                    "rotation": {
+                                                                                      "base": 0,
+                                                                                      "current": 0
+                                                                                    },
+                                                                                    "children": []
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "piece": "C_Rhinge_down_female",
+                                    "rotation": {
+                                      "base": 0,
+                                      "current": 0
+                                    },
+                                    "children": [
+                                      {
+                                        "piece": "H_Rhinge_flat_male",
+                                        "rotation": {
+                                          "base": 0.40593461184160357,
+                                          "current": 0.40593461184160357
+                                        },
+                                        "children": [
+                                          {
+                                            "piece": "B_arm_wing_small",
+                                            "rotation": {},
+                                            "children": [
+                                              {
+                                                "piece": "C_connector_coupler",
+                                                "rotation": {
+                                                  "base": 0,
+                                                  "current": 0
+                                                },
+                                                "children": [
+                                                  {
+                                                    "piece": "B_connector_elbow_22-5deg_A",
+                                                    "rotation": {
+                                                      "base": 0,
+                                                      "current": 0
+                                                    },
+                                                    "children": [
+                                                      {
+                                                        "piece": "C_connector_coupler",
+                                                        "rotation": {
+                                                          "base": 0,
+                                                          "current": 0
+                                                        },
+                                                        "children": [
+                                                          {
+                                                            "piece": "B_arm_wing_end",
+                                                            "rotation": {
+                                                              "base": 0,
+                                                              "current": 0
+                                                            },
+                                                            "children": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

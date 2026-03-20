@@ -1,4 +1,7 @@
 import { proxy } from "valtio";
+import angel from "../presets/angel.json";
+import dragon from "../presets/dragon.json";
+import showcase from "../presets/showcase.json";
 
 // --- Types (JSDoc for intellisense) ---
 /**
@@ -70,9 +73,13 @@ export const state = proxy({
   }),
   presets: {
     empty: null,
+    angel: angel.config,
+    dragon: dragon.config,
+    showcase: showcase.config,
   },
-  basePresets: ["empty"],
+  basePresets: ["empty", "angel", "dragon", "showcase"],
   cameraResetKey: 0,
+  showGizmo: false,
 });
 
 // Re-export for compatibility if needed, though state.presets is preferred

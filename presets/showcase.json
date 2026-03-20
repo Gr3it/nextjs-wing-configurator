@@ -1,0 +1,198 @@
+{
+  "name": "showcase",
+  "config": {
+    "piece": "A1_arm_static_angled_medium",
+    "rotation": {
+      "base": -0.7853981633974483,
+      "current": -0.7853981633974483
+    },
+    "children": [
+      {
+        "piece": "A2_arm_static_medium",
+        "rotation": {
+          "base": 1.5707963267948966,
+          "current": 1.5707963267948966
+        },
+        "children": [
+          {
+            "piece": "C_connector_coupler",
+            "rotation": {
+              "base": 0,
+              "current": 0
+            },
+            "children": [
+              {
+                "piece": "B_connector_elbow_22-5deg_A",
+                "rotation": {
+                  "base": 0,
+                  "current": 0
+                },
+                "children": [
+                  {
+                    "piece": "C_connector_coupler",
+                    "rotation": {
+                      "base": 0,
+                      "current": 0
+                    },
+                    "children": [
+                      {
+                        "piece": "B_connector_splitter_vampire",
+                        "rotation": {
+                          "base": 0,
+                          "current": 0
+                        },
+                        "children": [
+                          {
+                            "piece": "C_Rhinge_down_female",
+                            "rotation": {
+                              "base": 0,
+                              "current": 0
+                            },
+                            "children": [
+                              {
+                                "piece": "H_Rhinge_flat_male",
+                                "rotation": {
+                                  "base": 0,
+                                  "current": 0
+                                },
+                                "children": [
+                                  {
+                                    "piece": "B_arm_wing_small",
+                                    "rotation": {
+                                      "base": 0,
+                                      "current": 0
+                                    },
+                                    "children": [
+                                      {
+                                        "piece": "C_Rhinge_down_female",
+                                        "rotation": {
+                                          "base": 0,
+                                          "current": 0
+                                        },
+                                        "children": [
+                                          {
+                                            "piece": "H_Rhinge_down_male",
+                                            "rotation": {
+                                              "base": 0,
+                                              "current": 0
+                                            },
+                                            "children": [
+                                              {
+                                                "piece": "B_arm_wing_end",
+                                                "rotation": {
+                                                  "base": 0,
+                                                  "current": 0
+                                                },
+                                                "children": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "piece": "C_Rhinge_down_female",
+                            "rotation": {
+                              "base": 0,
+                              "current": 0
+                            },
+                            "children": [
+                              {
+                                "piece": "H_Rhinge_down_male",
+                                "rotation": {
+                                  "base": 0,
+                                  "current": 0
+                                },
+                                "children": [
+                                  {
+                                    "piece": "B_arm_wing_medium",
+                                    "rotation": {
+                                      "base": 0,
+                                      "current": 0
+                                    },
+                                    "children": [
+                                      {
+                                        "piece": "C_connector_coupler",
+                                        "rotation": {
+                                          "base": 0,
+                                          "current": 0
+                                        },
+                                        "children": [
+                                          {
+                                            "piece": "B_connector_elbow_45deg_A",
+                                            "rotation": {
+                                              "base": 0,
+                                              "current": 0
+                                            },
+                                            "children": [
+                                              {
+                                                "piece": "C_connector_coupler",
+                                                "rotation": {
+                                                  "base": 0,
+                                                  "current": 0
+                                                },
+                                                "children": [
+                                                  {
+                                                    "piece": "B_arm_wing_medium",
+                                                    "rotation": {
+                                                      "base": 0,
+                                                      "current": 0
+                                                    },
+                                                    "children": []
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "piece": "C_Rhinge_down_female",
+                            "rotation": {
+                              "base": 0,
+                              "current": 0
+                            },
+                            "children": [
+                              {
+                                "piece": "H_Rhinge_down_male",
+                                "rotation": {
+                                  "base": 0,
+                                  "current": 0
+                                },
+                                "children": [
+                                  {
+                                    "piece": "B_arm_wing_medium",
+                                    "rotation": {
+                                      "base": 0,
+                                      "current": 0
+                                    },
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
