@@ -28,7 +28,7 @@ export default function DeleteButton({ path, isActive, position = [0, 0, 0] }) {
       {showConfirm && (
         <Html
           center
-          zIndexRange={[100, 100]}
+          zIndexRange={[500, 500]}
           style={{ pointerEvents: "none" }}
           distanceFactor={1.5}
           position={[0, 0.05, 0]} // Offset upward slightly to not overlap the sphere

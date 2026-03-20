@@ -49,7 +49,7 @@ export default function AddMenu({
   };
 
   return (
-    <Html center zIndexRange={[100, 0]} style={{ pointerEvents: "none" }}>
+    <Html center zIndexRange={[800, 900]} style={{ pointerEvents: "none" }}>
       <div
         id="add-menu-container"
         ref={menuRef}

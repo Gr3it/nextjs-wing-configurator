@@ -75,7 +75,7 @@ export default function WingGizmo({ groupRef }) {
           lineWidth={4}
           depthTest={false}
         />
-        <Html position={[0, 0.25, 0]} center>
+        <Html position={[0, 0.25, 0]} center zIndexRange={[100, 200]}>
           <div className="bg-blue-600 text-white px-4 py-1.5 rounded-xl shadow-2xl text-[16px] font-black whitespace-nowrap border-2 border-white pointer-events-none uppercase tracking-wider">
             Span {span.toFixed(2)}m
           </div>
@@ -112,7 +112,11 @@ export default function WingGizmo({ groupRef }) {
           lineWidth={4}
           depthTest={false}
         />
-        <Html position={[0.3, (min[1] + max[1]) / 2, 0]} center>
+        <Html
+          position={[0.3, (min[1] + max[1]) / 2, 0]}
+          center
+          zIndexRange={[100, 200]}
+        >
           <div className="bg-red-600 text-white px-4 py-1.5 rounded-xl shadow-2xl text-[16px] font-black whitespace-nowrap border-2 border-white -rotate-90 pointer-events-none uppercase tracking-wider">
             Height {height.toFixed(2)}m
           </div>
