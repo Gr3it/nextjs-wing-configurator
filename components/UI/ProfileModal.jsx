@@ -32,30 +32,42 @@ export default function ProfileModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm px-4 pointer-events-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4 pointer-events-auto">
       {/* Modal Container */}
       <div 
-        className="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden transform transition-all border border-slate-100"
+        className="rounded-xl shadow-2xl w-full max-w-sm overflow-hidden transform transition-all"
+        style={{
+          background: "#1a1a1a",
+          border: "1px solid #333",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
+        }}
       >
-        <div className="flex justify-between items-center p-5 border-b border-slate-100">
-          <h3 className="text-lg font-bold text-slate-800">{title}</h3>
+        <div className="flex justify-between items-center p-4 border-b border-[#333]">
+          <h3 className="text-[11px] font-mono uppercase tracking-widest text-white">{title}</h3>
           <button 
             type="button"
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 transition-colors cursor-pointer bg-slate-100 hover:bg-slate-200 p-1.5 rounded-full"
+            style={{
+              background: "none",
+              border: "none",
+              color: "#888",
+              cursor: "pointer",
+              fontSize: "18px",
+              padding: "4px",
+            }}
           >
-            <X className="w-5 h-5" />
+            ✕
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-5">
-          <p className="text-slate-600 text-sm mb-4">
+        <form onSubmit={handleSubmit} className="p-4">
+          <p className="text-[#aaa] font-mono text-[10px] uppercase tracking-wider mb-4 leading-relaxed">
             {description}
           </p>
 
           {type === "rename" && (
             <div className="mb-6">
-              <label className="text-xs font-semibold text-slate-500 uppercase block mb-1">
+              <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest block mb-2">
                 New Name
               </label>
               <input 
@@ -63,13 +75,13 @@ export default function ProfileModal({
                 type="text" 
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 text-slate-700 py-2 px-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20"
-                placeholder="Enter profile name..."
+                className="w-full bg-[#2a2a2a] border border-[#444] text-white py-2.5 px-3 rounded-lg outline-none focus:border-[#666] font-mono text-[11px] uppercase tracking-widest"
+                placeholder="PROFILENAME"
               />
             </div>
           )}
 
-          <div className="flex gap-3 mt-6">
+          <div className="flex gap-3">
             <Button
               type="button"
               variant="secondary"
@@ -88,5 +100,8 @@ export default function ProfileModal({
         </form>
       </div>
     </div>
+
+
+
   );
 }

@@ -6,17 +6,18 @@ import { toast } from "react-toastify";
 
 export default function PoseActions() {
   return (
-    <div className="space-y-2">
-      <label className="text-xs font-semibold text-slate-500 uppercase block">
+    <div className="space-y-4">
+      <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest block">
         Pose Actions
       </label>
+
       <div className="flex gap-2">
         <Button
           onClick={() => {
             resetAllToBase();
             toast.info("Pose reset to base values");
           }}
-          variant="dark"
+          variant="primary"
           icon={RotateCcw}
           title="Reset current pose to base values"
         >
@@ -27,13 +28,14 @@ export default function PoseActions() {
             saveAllCurrentAsBase();
             toast.success("Current pose set as new base");
           }}
-          variant="dark"
+          variant="primary"
           icon={Save}
           title="Save current pose as the new base"
         >
-          Set as Base
+          Set Base
         </Button>
       </div>
     </div>
+
   );
 }

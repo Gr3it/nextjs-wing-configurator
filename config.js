@@ -1,4 +1,5 @@
 export const config = {
+  showStats: false,
   connectors: {
     add: {
       color: "#27272a",

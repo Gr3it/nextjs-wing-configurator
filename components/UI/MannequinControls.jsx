@@ -7,10 +7,15 @@ export default function MannequinControls() {
 
   return (
     <div className="space-y-4">
-      <div>
-        <label className="text-xs font-semibold text-slate-500 uppercase">
-          Mannequin Height ({snap.mannequin.height.toFixed(2)}m)
-        </label>
+      <div className="space-y-1">
+        <div className="flex justify-between items-center px-0.5">
+          <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest">
+            Mannequin Height
+          </label>
+          <span className="text-[11px] font-mono text-white font-bold">
+            {snap.mannequin.height.toFixed(2)}m
+          </span>
+        </div>
         <input
           type="range"
           min="1.5"
@@ -20,14 +25,19 @@ export default function MannequinControls() {
           onChange={(e) =>
             (state.mannequin.height = parseFloat(e.target.value))
           }
-          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
+          className="w-full h-1.5 bg-[#333] rounded-full appearance-none cursor-pointer accent-white"
         />
       </div>
 
-      <div>
-        <label className="text-xs font-semibold text-slate-500 uppercase">
-          Mannequin Width ({snap.mannequin.widthMultiplier.toFixed(2)}x)
-        </label>
+      <div className="space-y-1">
+        <div className="flex justify-between items-center px-0.5">
+          <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest">
+            Mannequin Width
+          </label>
+          <span className="text-[11px] font-mono text-white font-bold">
+            {snap.mannequin.widthMultiplier.toFixed(2)}x
+          </span>
+        </div>
         <input
           type="range"
           min="0.75"
@@ -37,14 +47,19 @@ export default function MannequinControls() {
           onChange={(e) =>
             (state.mannequin.widthMultiplier = parseFloat(e.target.value))
           }
-          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
+          className="w-full h-1.5 bg-[#333] rounded-full appearance-none cursor-pointer accent-white"
         />
       </div>
 
-      <div>
-        <label className="text-xs font-semibold text-slate-500 uppercase">
-          Backplate Height ({snap.backplateHeightRatio.toFixed(2)})
-        </label>
+      <div className="space-y-1">
+        <div className="flex justify-between items-center px-0.5">
+          <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest">
+            Backplate Height
+          </label>
+          <span className="text-[11px] font-mono text-white font-bold">
+            {snap.backplateHeightRatio.toFixed(2)}
+          </span>
+        </div>
         <input
           type="range"
           min="0.70"
@@ -54,7 +69,7 @@ export default function MannequinControls() {
           onChange={(e) =>
             (state.backplateHeightRatio = parseFloat(e.target.value))
           }
-          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
+          className="w-full h-1.5 bg-[#333] rounded-full appearance-none cursor-pointer accent-white"
         />
       </div>
     </div>

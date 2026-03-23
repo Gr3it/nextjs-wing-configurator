@@ -2,7 +2,8 @@
 
 import Scene from "@/components/3D/scene/Scene";
 import ConfiguratorPanel from "@/components/UI/ConfiguratorPanel";
-import HUDButtons from "@/components/UI/HUDButtons";
+import CameraReset from "@/components/UI/CameraReset";
+import LogoFull from "@/components/Logo/LogoFull";
 
 export default function Home() {
   return (
@@ -14,18 +15,13 @@ export default function Home() {
 
       {/* UI Overlay Layer */}
       <div className="absolute inset-0 z-10 pointer-events-none">
+        <CameraReset />
         <ConfiguratorPanel />
-        <HUDButtons />
       </div>
 
       {/* Title / Info Overlay */}
-      <div className="absolute top-4 right-4 text-right pointer-events-none">
-        <h1 className="text-2xl font-black text-slate-800 tracking-tighter uppercase">
-          Wing Configurator
-        </h1>
-        <p className="text-slate-500 text-xs font-medium">
-          Build your own custom wing set
-        </p>
+      <div className="absolute top-4 right-6 text-right pointer-events-none">
+        <LogoFull className="h-16 w-auto text-slate-200" />
       </div>
     </main>
   );

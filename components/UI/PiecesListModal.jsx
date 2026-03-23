@@ -9,6 +9,7 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
 
   const pieceCounts = {};
   let totalWeight = 0;
+  let totalPieces = 0;
 
   /**
    * Adds a piece and its extras to the count.
@@ -43,6 +44,7 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
     }
     pieceCounts[label].count += multiplier;
     totalWeight += weight * multiplier;
+    totalPieces += multiplier;
 
     // Extra pieces: they should also respect symmetry if they have it
     if (pieceInfo.extra) {
@@ -68,60 +70,86 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
   const sortedLabels = Object.keys(pieceCounts).sort();
 
   return (
-    <div className="fixed inset-0 z-60 flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 md:p-10 pointer-events-auto">
+    <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8 pointer-events-auto">
       {/* Modal Container */}
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-xl h-full max-h-[90vh] flex flex-col overflow-hidden border border-slate-200">
+      <div
+        className="rounded-2xl shadow-2xl w-full max-w-xl h-full max-h-[90vh] flex flex-col overflow-hidden"
+        style={{
+          background: "#1a1a1a",
+          border: "1px solid #333",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
+        }}
+      >
         {/* Header */}
-        <div className="flex justify-between items-center p-6 border-b border-slate-200 bg-slate-50">
+        <div
+          className="flex justify-between items-center p-4 border-b"
+          style={{ borderColor: "#333", background: "#1a1a1a" }}
+        >
           <div className="flex items-center gap-3">
-            <div className="bg-blue-500 p-2 rounded-xl shadow-lg shadow-blue-200">
-              <Package className="w-6 h-6 text-white" />
-            </div>
+            <Package className="w-5 h-5 text-[#888]" />
             <div>
-              <h3 className="text-xl font-bold text-slate-800 leading-tight">
+              <h3 className="text-[11px] font-mono uppercase tracking-[0.15em] text-white leading-tight mb-0.5">
                 Pieces List
               </h3>
-              <p className="text-sm text-slate-500">
-                Summary of all parts needed for the build
+              <p className="text-[9px] font-mono text-[#888] uppercase tracking-wider">
+                Build summary & weight
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 transition-all hover:rotate-90 duration-300 cursor-pointer bg-white hover:bg-slate-100 p-2 rounded-full border border-slate-100 shadow-sm"
+            style={{
+              background: "none",
+              border: "none",
+              color: "#888",
+              cursor: "pointer",
+              fontSize: "18px",
+              padding: "4px",
+            }}
           >
-            <X className="w-6 h-6" />
+            ✕
           </button>
         </div>
 
         {/* Content Table */}
-        <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-200">
+        <div className="flex-1 overflow-y-auto scrollbar-hide">
+          <style>{`
+            .scrollbar-hide::-webkit-scrollbar { display: none; }
+            .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+          `}</style>
           <table className="w-full text-left border-collapse border-spacing-0">
-            <thead className="sticky top-0 z-10 bg-slate-100 border-b border-slate-200">
-              <tr className="text-slate-600 uppercase text-[10px] font-bold tracking-widest">
-                <th className="px-8 py-3.5">Piece</th>
-                <th className="px-8 py-3.5 text-center">Count</th>
-                <th className="px-8 py-3.5 text-right">Weight (gr)</th>
+            <thead className="sticky top-0 z-10" style={{ background: "#222" }}>
+              <tr
+                className="text-[#888] uppercase text-[9px] font-mono tracking-widest border-b"
+                style={{ borderColor: "#333" }}
+              >
+                <th className="px-6 py-2.5">Piece</th>
+                <th className="px-6 py-2.5 text-center">Qty</th>
+                <th className="px-6 py-2.5 text-right">Weight</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-200">
+            <tbody className="divide-y divide-[#222]">
               {sortedLabels.map((label) => (
                 <tr
                   key={label}
-                  className="group hover:bg-white transition-all duration-200"
+                  className="group hover:bg-[#222] transition-all duration-150"
+                  style={{ borderBottom: "1px solid #222" }}
                 >
-                  <td className="px-8 py-4">
-                    <div className="text-slate-700 font-semibold group-hover:text-blue-600 transition-colors">
+                  <td className="px-6 py-2">
+                    <div className="text-white font-mono text-[11px] uppercase tracking-wide transition-colors">
                       {label}
                     </div>
                   </td>
-                  <td className="px-8 py-4 text-center">
-                    <span className="inline-flex items-center justify-center bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600 font-bold px-3 py-1 rounded-lg text-xs transition-colors border border-slate-200 group-hover:border-blue-200">
+                  <td className="px-6 py-2 text-center">
+                    <span
+                      className="inline-flex items-center justify-center font-mono text-white px-2 py-0.5 rounded border text-[10px]"
+                      style={{ background: "#222", borderColor: "#444" }}
+                    >
                       {pieceCounts[label].count}x
                     </span>
                   </td>
-                  <td className="px-8 py-4 text-right font-mono text-sm text-slate-500 group-hover:text-slate-800">
+                  <td className="px-6 py-2 text-right font-mono text-[10px] text-[#aaa] group-hover:text-white">
                     {(
                       pieceCounts[label].weight * pieceCounts[label].count
                     ).toLocaleString()}
@@ -134,26 +162,39 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
         </div>
 
         {/* Footer with Totals */}
-        <div className="p-6 border-t border-slate-200 bg-slate-50/80 backdrop-blur-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-6">
+        <div
+          className="p-4 border-t flex flex-col md:flex-row md:items-center justify-between gap-4"
+          style={{ borderColor: "#333", background: "#1a1a1a" }}
+        >
+          <div className="flex items-center gap-10">
             <div className="flex items-center gap-2">
-              <span className="p-1.5 bg-orange-100 rounded-lg">
-                <Weight className="w-5 h-5 text-orange-600" />
-              </span>
+              <Weight className="w-4 h-4 text-[#888]" />
               <div>
-                <span className="text-xs text-slate-500 uppercase font-bold tracking-tight block">
-                  Estimated Total Weight
+                <span className="text-[9px] text-[#888] uppercase font-mono tracking-widest block mb-0.5">
+                  Build Weight
                 </span>
-                <span className="text-2xl font-black text-slate-800">
+                <span className="text-lg font-mono text-white">
                   {totalWeight.toLocaleString()}{" "}
-                  <span className="text-lg font-normal text-slate-500">gr</span>
+                  <span className="text-xs text-[#888]">GR</span>
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Package className="w-4 h-4 text-[#888]" />
+              <div>
+                <span className="text-[9px] text-[#888] uppercase font-mono tracking-widest block mb-0.5">
+                  Total Pieces
+                </span>
+                <span className="text-lg font-mono text-white">
+                  {totalPieces} <span className="text-xs text-[#888]">PCS</span>
                 </span>
               </div>
             </div>
           </div>
+
           <div className="flex gap-3">
             <Button
-              variant="dark"
+              variant="primary"
               onClick={onClose}
               fullWidth={false}
               className="px-10"

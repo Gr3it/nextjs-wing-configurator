@@ -6,6 +6,7 @@ import {
   Sky,
   Environment,
   ContactShadows,
+  Stats,
 } from "@react-three/drei";
 import { Suspense } from "react";
 
@@ -19,6 +20,7 @@ export default function Scene() {
   return (
     <div className="w-screen h-screen bg-slate-100">
       <Canvas shadows camera={config.camera}>
+        {config.showStats && <Stats />}
         <Suspense fallback={null}>
           <Environment preset="city" />
           <Sky sunPosition={[100, 20, 100]} />
@@ -30,7 +32,7 @@ export default function Scene() {
           </Bounds>
 
           <ContactShadows
-            opacity={0.4}
+            opacity={0.5}
             scale={10}
             blur={2.4}
             far={10}
@@ -39,7 +41,7 @@ export default function Scene() {
           />
         </Suspense>
 
-        <OrbitControls makeDefault />
+        <OrbitControls makeDefault zoomSpeed={2} />
       </Canvas>
       <EscDeselect />
     </div>

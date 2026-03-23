@@ -116,7 +116,7 @@ export default function WingNode({
     >
       <group scale={isRight ? [1, 1, 1] : [-1, 1, 1]}>
         <PivotControls
-          axisColors={["red", "red", "red"]}
+          axisColors={["blue", "blue", "blue"]}
           ref={rotationRef}
           scale={0.15}
           lineWidth={2}

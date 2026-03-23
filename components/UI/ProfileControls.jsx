@@ -46,35 +46,36 @@ export default function ProfileControls() {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
       <div>
-        <label className="text-xs font-semibold text-slate-500 uppercase block mb-1">
+        <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest block mb-2">
           Preset Profile
         </label>
         <div className="relative">
           <select
             value={snap.preset}
             onChange={(e) => setPreset(e.target.value, presets[e.target.value])}
-            className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-700 py-2 px-3 pr-8 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full appearance-none bg-[#2a2a2a] border border-[#444] text-white py-2 px-3 pr-8 rounded-lg outline-none focus:border-[#666] font-mono text-[11px] uppercase tracking-wide cursor-pointer"
           >
-            <optgroup label="Base Profiles">
+            <optgroup label="Base Profiles" style={{ background: "#222", color: "#888" }}>
               {Object.keys(snap.presets)
                 .filter((p) => snap.basePresets.includes(p))
                 .map((p) => (
-                  <option key={p} value={p}>
+                  <option key={p} value={p} style={{ background: "#222", color: "#fff" }}>
                     {p.toUpperCase()}
                   </option>
                 ))}
             </optgroup>
 
+
             {Object.keys(snap.presets).some(
               (p) => !snap.basePresets.includes(p)
             ) && (
-              <optgroup label="Custom Profiles">
+              <optgroup label="Custom Profiles" style={{ background: "#1a1a1a", color: "#888" }}>
                 {Object.keys(snap.presets)
                   .filter((p) => !snap.basePresets.includes(p))
                   .map((p) => (
-                    <option key={p} value={p}>
+                    <option key={p} value={p} style={{ background: "#1a1a1a", color: "#ddd" }}>
                       {p.toUpperCase()}
                     </option>
                   ))}
@@ -82,14 +83,15 @@ export default function ProfileControls() {
             )}
 
             {snap.preset === "custom" && (
-              <option value="custom">CUSTOM (Modified)</option>
+              <option value="custom" style={{ background: "#1a1a1a", color: "#ddd" }}>CUSTOM (Modified)</option>
             )}
           </select>
-          <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-slate-400">
-            <ChevronDown className="w-4 h-4" />
+          <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-[#555]">
+            <ChevronDown className="w-3.5 h-3.5" />
           </div>
         </div>
       </div>
+
 
       <div className="flex gap-2">
         <Button

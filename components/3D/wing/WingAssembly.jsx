@@ -27,7 +27,10 @@ export default function WingAssembly() {
 
   return (
     <>
-      <group ref={groupRef} position={[0, snap.backplateHeightRatio * snap.mannequin.height, 0]}>
+      <group
+        ref={groupRef}
+        position={[0, snap.backplateHeightRatio * snap.mannequin.height, 0]}
+      >
         <primitive object={scene} castShadow receiveShadow />
 
         {/* Right Wing */}
@@ -55,5 +58,7 @@ export default function WingAssembly() {
 
 // Preload all GLBs at startup to avoid white flash when new pieces are added
 Object.values(pieces.pieces).forEach((piece) => {
-  useGLTF.preload(`/${pieces.info.folder}${piece.file}`);
+  if (piece.file) {
+    useGLTF.preload(`/${pieces.info.folder}${piece.file}`);
+  }
 });

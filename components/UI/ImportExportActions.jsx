@@ -66,12 +66,13 @@ export default function ImportExportActions() {
 
   return (
     <div className="flex gap-2">
-      <Button onClick={handleExport} variant="dark" icon={Download}>
+      <Button onClick={handleExport} variant="primary" icon={Download}>
         Export
       </Button>
-      <Button onClick={handleImport} variant="dark" icon={Upload}>
+      <Button onClick={handleImport} variant="primary" icon={Upload}>
         Import
       </Button>
     </div>
+
   );
 }
