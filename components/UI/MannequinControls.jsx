@@ -9,10 +9,10 @@ export default function MannequinControls() {
     <div className="space-y-4">
       <div className="space-y-1">
         <div className="flex justify-between items-center px-0.5">
-          <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest">
+          <label className="text-xs font-mono text-[#ccc] uppercase tracking-widest">
             Mannequin Height
           </label>
-          <span className="text-[11px] font-mono text-white font-bold">
+          <span className="text-xs font-mono text-white font-bold">
             {snap.mannequin.height.toFixed(2)}m
           </span>
         </div>
@@ -31,10 +31,10 @@ export default function MannequinControls() {
 
       <div className="space-y-1">
         <div className="flex justify-between items-center px-0.5">
-          <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest">
+          <label className="text-xs font-mono text-[#ccc] uppercase tracking-widest">
             Mannequin Width
           </label>
-          <span className="text-[11px] font-mono text-white font-bold">
+          <span className="text-xs font-mono text-white font-bold">
             {snap.mannequin.widthMultiplier.toFixed(2)}x
           </span>
         </div>
@@ -53,10 +53,10 @@ export default function MannequinControls() {
 
       <div className="space-y-1">
         <div className="flex justify-between items-center px-0.5">
-          <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest">
+          <label className="text-xs font-mono text-[#ccc] uppercase tracking-widest">
             Backplate Height
           </label>
-          <span className="text-[11px] font-mono text-white font-bold">
+          <span className="text-xs font-mono text-white font-bold">
             {snap.backplateHeightRatio.toFixed(2)}
           </span>
         </div>

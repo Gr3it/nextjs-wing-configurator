@@ -35,7 +35,7 @@ export default function Button({
         flex items-center justify-center gap-2 py-2 px-4 rounded-lg 
         transition-all text-sm cursor-pointer 
         disabled:cursor-not-allowed disabled:opacity-50
-        font-mono uppercase tracking-wider text-[11px]
+        font-mono uppercase tracking-wider text-xs
         bg-(--bg) border border-(--br) text-(--color)
         hover:bg-(--hbg) hover:border-(--hbr)
         ${className}

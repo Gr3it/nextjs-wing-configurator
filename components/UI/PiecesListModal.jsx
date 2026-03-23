@@ -88,10 +88,10 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
           <div className="flex items-center gap-3">
             <Package className="w-5 h-5 text-[#888]" />
             <div>
-              <h3 className="text-[11px] font-mono uppercase tracking-[0.15em] text-white leading-tight mb-0.5">
+              <h3 className="text-sm font-mono uppercase tracking-[0.15em] text-white leading-tight mb-0.5">
                 Pieces List
               </h3>
-              <p className="text-[9px] font-mono text-[#888] uppercase tracking-wider">
+              <p className="text-xs font-mono text-[#888] uppercase tracking-wider">
                 Build summary & weight
               </p>
             </div>
@@ -121,7 +121,7 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
           <table className="w-full text-left border-collapse border-spacing-0">
             <thead className="sticky top-0 z-10" style={{ background: "#222" }}>
               <tr
-                className="text-[#888] uppercase text-[9px] font-mono tracking-widest border-b"
+                className="text-[#888] uppercase text-xs font-mono tracking-widest border-b"
                 style={{ borderColor: "#333" }}
               >
                 <th className="px-6 py-2.5">Piece</th>
@@ -137,19 +137,19 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
                   style={{ borderBottom: "1px solid #222" }}
                 >
                   <td className="px-6 py-2">
-                    <div className="text-white font-mono text-[11px] uppercase tracking-wide transition-colors">
+                    <div className="text-white font-mono text-xs uppercase tracking-wide transition-colors">
                       {label}
                     </div>
                   </td>
                   <td className="px-6 py-2 text-center">
                     <span
-                      className="inline-flex items-center justify-center font-mono text-white px-2 py-0.5 rounded border text-[10px]"
+                      className="inline-flex items-center justify-center font-mono text-white px-2 py-0.5 rounded border text-xs"
                       style={{ background: "#222", borderColor: "#444" }}
                     >
                       {pieceCounts[label].count}x
                     </span>
                   </td>
-                  <td className="px-6 py-2 text-right font-mono text-[10px] text-[#aaa] group-hover:text-white">
+                  <td className="px-6 py-2 text-right font-mono text-xs text-[#aaa] group-hover:text-white">
                     {(
                       pieceCounts[label].weight * pieceCounts[label].count
                     ).toLocaleString()}
@@ -166,11 +166,11 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
           className="p-4 border-t flex flex-col md:flex-row md:items-center justify-between gap-4"
           style={{ borderColor: "#333", background: "#1a1a1a" }}
         >
-          <div className="flex items-center gap-10">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-12">
+            <div className="flex items-center gap-4">
               <Weight className="w-4 h-4 text-[#888]" />
               <div>
-                <span className="text-[9px] text-[#888] uppercase font-mono tracking-widest block mb-0.5">
+                <span className="text-xs text-[#888] uppercase font-mono tracking-widest block mb-0.5">
                   Build Weight
                 </span>
                 <span className="text-lg font-mono text-white">
@@ -179,10 +179,10 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <Package className="w-4 h-4 text-[#888]" />
               <div>
-                <span className="text-[9px] text-[#888] uppercase font-mono tracking-widest block mb-0.5">
+                <span className="text-xs text-[#888] uppercase font-mono tracking-widest block mb-0.5">
                   Total Pieces
                 </span>
                 <span className="text-lg font-mono text-white">

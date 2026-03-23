@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function PoseActions() {
   return (
     <div className="space-y-4">
-      <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest block">
+      <label className="text-xs font-mono text-[#ccc] uppercase tracking-widest block">
         Pose Actions
       </label>
 
@@ -36,6 +36,5 @@ export default function PoseActions() {
         </Button>
       </div>
     </div>
-
   );
 }

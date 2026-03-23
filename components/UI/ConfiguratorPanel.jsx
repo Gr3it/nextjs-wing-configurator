@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Info, List, Ruler } from "lucide-react";
 import { useSnapshot } from "valtio";
-import { state } from "../../store/wingState";
+import { state, loadCustomPresets } from "../../store/wingState";
 import MannequinControls from "./MannequinControls";
 import ProfileControls from "./ProfileControls";
 import ImportExportActions from "./ImportExportActions";
@@ -13,6 +13,10 @@ import PiecesListModal from "./PiecesListModal";
 export default function ConfiguratorPanel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const snap = useSnapshot(state);
+
+  useEffect(() => {
+    loadCustomPresets();
+  }, []);
 
   return (
     <div className="fixed inset-y-0 left-0 w-80 m-4 pointer-events-none flex flex-col gap-4">
@@ -30,7 +34,7 @@ export default function ConfiguratorPanel() {
           .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         `}</style>
 
-        <h2 className="text-[11px] font-mono uppercase tracking-widest text-white mb-6 flex items-center gap-2">
+        <h2 className="text-xs font-mono uppercase tracking-widest text-white mb-6 flex items-center gap-2">
           <Info className="w-3.5 h-3.5 text-[#aaa]" />
           Wing Configurator
         </h2>
@@ -60,7 +64,7 @@ export default function ConfiguratorPanel() {
               <Ruler
                 className={`w-3.5 h-3.5 ${snap.showGizmo ? "text-white" : "text-[#888]"}`}
               />
-              <span className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest">
+              <span className="text-xs font-mono text-[#ccc] uppercase tracking-widest">
                 Measurements (m)
               </span>
             </div>

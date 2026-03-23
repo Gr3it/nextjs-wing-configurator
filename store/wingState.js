@@ -86,6 +86,55 @@ export const state = proxy({
 export const presets = state.presets;
 export const basePresets = state.basePresets;
 
+// --- LocalStorage persistence ---
+const LS_KEY = "wingConfigurator_customPresets";
+
+/** Saves all non-base presets to localStorage. */
+const persistCustomPresets = () => {
+  try {
+    const custom = {};
+    for (const key of Object.keys(state.presets)) {
+      if (!state.basePresets.includes(key)) {
+        custom[key] = state.presets[key];
+      }
+    }
+    localStorage.setItem(LS_KEY, JSON.stringify(custom));
+  } catch (e) {
+    console.warn("wingState: failed to persist custom presets", e);
+  }
+};
+
+/** Loads custom presets from localStorage into the store. */
+export const loadCustomPresets = () => {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    const custom = JSON.parse(raw);
+    for (const [key, value] of Object.entries(custom)) {
+      if (!state.basePresets.includes(key)) {
+        state.presets[key] = value;
+      }
+    }
+  } catch (e) {
+    console.warn("wingState: failed to load custom presets", e);
+  }
+};
+
+/**
+ * Deletes a custom preset from the store and from localStorage.
+ * @param {string} name
+ */
+export const deleteCustomPreset = (name) => {
+  if (state.basePresets.includes(name)) return; // never delete base presets
+  delete state.presets[name];
+  if (state.preset === name) {
+    state.preset = "empty";
+    state.rightWingRoot = null;
+    state.active.path = null;
+  }
+  persistCustomPresets();
+};
+
 // --- Auto-generate Custom Profiles ---
 let isBatching = false;
 const handlePresetModification = () => {
@@ -114,6 +163,7 @@ const handlePresetModification = () => {
     setTimeout(() => {
       presets[state.preset] = JSON.parse(JSON.stringify(state.rightWingRoot));
       isBatching = false;
+      persistCustomPresets();
     }, 0);
   }
 };

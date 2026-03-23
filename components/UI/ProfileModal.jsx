@@ -3,15 +3,15 @@ import { X } from "lucide-react";
 
 import Button from "./Button";
 
-export default function ProfileModal({ 
-  isOpen, 
-  onClose, 
-  title, 
-  description, 
+export default function ProfileModal({
+  isOpen,
+  onClose,
+  title,
+  description,
   type, // "rename" or "delete"
-  initialValue = "", 
-  onSubmit, 
-  actionLabel 
+  initialValue = "",
+  onSubmit,
+  actionLabel,
 }) {
   const [inputValue, setInputValue] = useState(initialValue);
 
@@ -34,7 +34,7 @@ export default function ProfileModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4 pointer-events-auto">
       {/* Modal Container */}
-      <div 
+      <div
         className="rounded-xl shadow-2xl w-full max-w-sm overflow-hidden transform transition-all"
         style={{
           background: "#1a1a1a",
@@ -43,8 +43,10 @@ export default function ProfileModal({
         }}
       >
         <div className="flex justify-between items-center p-4 border-b border-[#333]">
-          <h3 className="text-[11px] font-mono uppercase tracking-widest text-white">{title}</h3>
-          <button 
+          <h3 className="text-xs font-mono uppercase tracking-widest text-white">
+            {title}
+          </h3>
+          <button
             type="button"
             onClick={onClose}
             style={{
@@ -61,32 +63,28 @@ export default function ProfileModal({
         </div>
 
         <form onSubmit={handleSubmit} className="p-4">
-          <p className="text-[#aaa] font-mono text-[10px] uppercase tracking-wider mb-4 leading-relaxed">
+          <p className="text-[#aaa] font-mono text-xs uppercase tracking-wider mb-4 leading-relaxed">
             {description}
           </p>
 
           {type === "rename" && (
             <div className="mb-6">
-              <label className="text-[10px] font-mono text-[#ccc] uppercase tracking-widest block mb-2">
+              <label className="text-xs font-mono text-[#ccc] uppercase tracking-widest block mb-2">
                 New Name
               </label>
-              <input 
+              <input
                 autoFocus
-                type="text" 
+                type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="w-full bg-[#2a2a2a] border border-[#444] text-white py-2.5 px-3 rounded-lg outline-none focus:border-[#666] font-mono text-[11px] uppercase tracking-widest"
+                className="w-full bg-[#2a2a2a] border border-[#444] text-white py-2.5 px-3 rounded-lg outline-none focus:border-[#666] font-mono text-xs uppercase tracking-widest"
                 placeholder="PROFILENAME"
               />
             </div>
           )}
 
           <div className="flex gap-3">
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={onClose}
-            >
+            <Button type="button" variant="secondary" onClick={onClose}>
               Cancel
             </Button>
             <Button
@@ -100,8 +98,5 @@ export default function ProfileModal({
         </form>
       </div>
     </div>
-
-
-
   );
 }
