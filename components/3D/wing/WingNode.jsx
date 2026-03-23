@@ -102,18 +102,7 @@ export default function WingNode({
   });
 
   return (
-    <group
-      position={position}
-      onClick={handleClick}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setIsHovered(true);
-      }}
-      onPointerOut={(e) => {
-        e.stopPropagation();
-        setIsHovered(false);
-      }}
-    >
+    <group position={position}>
       <group scale={isRight ? [1, 1, 1] : [-1, 1, 1]}>
         <PivotControls
           axisColors={["blue", "blue", "blue"]}
@@ -128,10 +117,23 @@ export default function WingNode({
           onDrag={handleDrag}
           depthTest={false}
           visible={isActive && rotationAxis != undefined}
+          enabled={isActive}
           matrix={matrix}
         >
-          <primitive object={mainScene} castShadow receiveShadow />
-          {extraPieces}
+          <group
+            onClick={handleClick}
+            onPointerOver={(e) => {
+              e.stopPropagation();
+              setIsHovered(true);
+            }}
+            onPointerOut={(e) => {
+              e.stopPropagation();
+              setIsHovered(false);
+            }}
+          >
+            <primitive object={mainScene} />
+            {extraPieces}
+          </group>
           {children}
         </PivotControls>
       </group>
