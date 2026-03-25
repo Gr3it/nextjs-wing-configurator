@@ -3,6 +3,25 @@ import * as THREE from "three";
 import { snapToStep, buildRotationMatrix } from "@/lib/rotation";
 import { getNodeByPath, updateCurrentRotation } from "@/store/wingState";
 
+const DEG_TO_RAD = Math.PI / 180;
+
+function toRadians(degrees) {
+  return degrees * DEG_TO_RAD;
+}
+
+function toDegrees(radians) {
+  return radians / DEG_TO_RAD;
+}
+
+/**
+ * Manages the PivotControls rotation state for a single wing node.
+ *
+ * Responsibilities:
+ * - Computes which axes are active and their angular limits (from degrees → radians)
+ * - Keeps the pivot matrix in sync when the store changes externally
+ * - Handles drag events: extracts the angle, applies snap/clamp, then writes back
+ *   to the store only — both wings update in sync via their own useEffect
+ */
 export function useNodeRotation({
   isRight,
   rotationAxis,
@@ -12,95 +31,106 @@ export function useNodeRotation({
   path,
 }) {
   const pivotRef = useRef();
+  const targetRef = useRef();
+  const isDragging = useRef(false);
 
-  // Define active axes based on rotation axis
+  // Reused across drag events to avoid per-frame allocation
+  const eulerRef = useRef(new THREE.Euler());
+
   const activeAxes = useMemo(
-    () => [
-      rotationAxis !== "x",
-      rotationAxis !== "y",
-      rotationAxis !== "z",
-    ],
-    [rotationAxis]
+    () => [rotationAxis !== "x", rotationAxis !== "y", rotationAxis !== "z"],
+    [rotationAxis],
   );
 
-  // Convert limits to radians when defined
   const rotationLimits = useMemo(() => {
     if (!limits) return [undefined, undefined, undefined];
-    const radiansMin = limits.min * (Math.PI / 180);
-    const radiansMax = limits.max * (Math.PI / 180);
+    const min = toRadians(limits.min);
+    const max = toRadians(limits.max);
     return [
-      rotationAxis === "x" ? [radiansMin, radiansMax] : undefined,
-      rotationAxis === "y" ? [radiansMin, radiansMax] : undefined,
-      rotationAxis === "z" ? [radiansMin, radiansMax] : undefined,
+      rotationAxis === "x" ? [min, max] : undefined,
+      rotationAxis === "y" ? [min, max] : undefined,
+      rotationAxis === "z" ? [min, max] : undefined,
     ];
   }, [rotationAxis, limits]);
 
-  // Helper to construct the local matrix reflecting L/R sides properly
-  const getMatrix = useCallback(
+  const buildMatrix = useCallback(
+    (angle) => buildRotationMatrix(rotationAxis, angle),
+    [rotationAxis],
+  );
+
+  const applyAngle = useCallback(
     (angle) => {
-      const rotMatrix = buildRotationMatrix(rotationAxis, angle);
-      if (isRight) return rotMatrix;
-      return new THREE.Matrix4().makeScale(-1, 1, 1).multiply(rotMatrix);
+      const rotMatrix = buildMatrix(angle);
+      if (pivotRef.current) {
+        pivotRef.current.matrix.copy(rotMatrix);
+        pivotRef.current.matrixWorldNeedsUpdate = true;
+      }
+      if (targetRef.current) {
+        targetRef.current.matrix.copy(rotMatrix);
+        targetRef.current.matrixWorldNeedsUpdate = true;
+      }
     },
-    [isRight, rotationAxis]
+    [buildMatrix],
   );
 
-  // Matrix representing the current state from store
-  const matrix = useMemo(
-    () => getMatrix(currentAngle),
-    [getMatrix, currentAngle]
+  const currentMatrix = useMemo(
+    () => buildMatrix(currentAngle),
+    [buildMatrix, currentAngle],
   );
 
-  // Sync pivot matrix if state changes externally
   useEffect(() => {
-    if (!pivotRef.current) return;
-    pivotRef.current.matrix.copy(matrix);
-    pivotRef.current.matrixWorldNeedsUpdate = true;
-  }, [matrix]);
+    if (isDragging.current) {
+      // Il pivotRef è già gestito direttamente in handleDrag
+      if (targetRef.current) {
+        targetRef.current.matrix.copy(currentMatrix);
+        targetRef.current.matrixWorldNeedsUpdate = true;
+      }
+      return;
+    }
+    applyAngle(currentAngle);
+  }, [currentMatrix, currentAngle, applyAngle]);
 
-  // Handle interaction with pivot controls
+  const onDragStart = useCallback(() => {
+    isDragging.current = true;
+  }, []);
+
+  const onDragEnd = useCallback(() => {
+    isDragging.current = false;
+  }, []);
+
   const handleDrag = useCallback(
     (draggedMatrix) => {
-      // Invert matrix for the left wing so we get a uniform Euler angle extraction
-      const m = isRight
-        ? draggedMatrix
-        : new THREE.Matrix4().makeScale(-1, 1, 1).multiply(draggedMatrix);
+      eulerRef.current.setFromRotationMatrix(draggedMatrix, "XYZ");
+      let angle = eulerRef.current[rotationAxis];
 
-      const euler = new THREE.Euler().setFromRotationMatrix(m, "XYZ");
-      let angle = euler[rotationAxis];
-
-      // Fix inverted rotation direction for left wing
-      if (!isRight) angle = -angle;
-
-      // Snapping
       if (step) angle = snapToStep(angle, step);
-
-      // Rotation bounds
       if (limits) {
-        const radiansMin = limits.min * (Math.PI / 180);
-        const radiansMax = limits.max * (Math.PI / 180);
-        angle = Math.max(radiansMin, Math.min(radiansMax, angle));
+        angle = Math.max(
+          toRadians(limits.min),
+          Math.min(toRadians(limits.max), angle),
+        );
       }
 
-      // Live update pivot handle matrix visually
+      // Feedback visivo immediato dello snap sul pivot
       if (pivotRef.current) {
-        const snappedMatrix = getMatrix(angle);
-        pivotRef.current.matrix.copy(snappedMatrix);
+        const rotMatrix = buildMatrix(angle);
+        pivotRef.current.matrix.copy(rotMatrix);
         pivotRef.current.matrixWorldNeedsUpdate = true;
       }
 
-      // Propagate state to store
-      const storeNode = getNodeByPath(path);
-      if (storeNode) updateCurrentRotation(storeNode, angle);
+      const node = getNodeByPath(path);
+      if (node) updateCurrentRotation(node, angle);
     },
-    [isRight, rotationAxis, step, limits, getMatrix, path]
+    [rotationAxis, step, limits, buildMatrix, path],
   );
 
   return {
     pivotRef,
+    targetRef,
     activeAxes,
     rotationLimits,
     handleDrag,
-    matrix,
+    onDragStart,
+    onDragEnd,
   };
 }

@@ -33,7 +33,7 @@ export default function Button({
       className={`
         ${fullWidth ? "w-full" : "w-auto"} 
         flex items-center justify-center gap-2 py-2 px-4 rounded-lg 
-        transition-all text-sm cursor-pointer 
+        transition-all cursor-pointer 
         disabled:cursor-not-allowed disabled:opacity-50
         font-mono uppercase tracking-wider text-xs
         bg-(--bg) border border-(--br) text-(--color)
