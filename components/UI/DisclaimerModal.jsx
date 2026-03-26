@@ -34,7 +34,7 @@ export default function DisclaimerModal() {
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pointer-events-auto">
       <div
-        className="rounded-2xl shadow-2xl w-full max-w-2xl flex flex-col overflow-hidden"
+        className="rounded-2xl shadow-2xl w-full max-w-2xl flex flex-col overflow-hidden max-h-full"
         style={{
           background: "#1a1a1a",
           border: "1px solid #333",
@@ -42,7 +42,7 @@ export default function DisclaimerModal() {
         }}
       >
         {/* Header */}
-        <div className="flex justify-between items-center p-6 border-b border-[#333] bg-[#1a1a1a]">
+        <div className="flex justify-between items-center p-4 md:p-6 border-b border-[#333] bg-[#1a1a1a] flex-none">
           <div className="flex items-center gap-3">
             <AlertTriangle className="w-6 h-6 text-amber-500" />
             <div>
@@ -63,7 +63,7 @@ export default function DisclaimerModal() {
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-8 overflow-y-auto max-h-[70vh] scrollbar-hide">
+        <div className="p-4 md:p-6 space-y-6 md:space-y-8 overflow-y-auto scrollbar-hide flex-1 min-h-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <section className="space-y-3">
               <h4 className="text-xs font-mono uppercase tracking-widest text-[#aaa] flex items-center gap-2">
@@ -146,42 +146,42 @@ export default function DisclaimerModal() {
               </div>
             </div>
           </section>
-        </div>
-
-        {/* Footer */}
-        <div className="p-6 border-t border-[#333] bg-[#1a1a1a] flex flex-col gap-4">
-          <label className="flex items-center gap-3 cursor-pointer group select-none">
-            <div className="relative">
-              <input
-                type="checkbox"
-                className="sr-only"
-                checked={dontShowAgain}
-                onChange={(e) => setDontShowAgain(e.target.checked)}
-              />
-              <div
-                className={`w-5 h-5 rounded border transition-all flex items-center justify-center ${
-                  dontShowAgain
-                    ? "bg-[#666] border-[#777]"
-                    : "bg-transparent border-[#444] group-hover:border-[#666]"
-                }`}
-              >
-                {dontShowAgain && (
-                  <Check className="w-3.5 h-3.5 text-white stroke-3" />
-                )}
+          
+          {/* Action Area (Now part of scroll) */}
+          <div className="-mx-4 md:-mx-6 px-4 md:px-6 pt-6 border-t border-[#333] flex flex-col gap-4">
+            <label className="flex items-center gap-3 cursor-pointer group select-none">
+              <div className="relative">
+                <input
+                  type="checkbox"
+                  className="sr-only"
+                  checked={dontShowAgain}
+                  onChange={(e) => setDontShowAgain(e.target.checked)}
+                />
+                <div
+                  className={`w-5 h-5 rounded border transition-all flex items-center justify-center ${
+                    dontShowAgain
+                      ? "bg-[#666] border-[#777]"
+                      : "bg-transparent border-[#444] group-hover:border-[#666]"
+                  }`}
+                >
+                  {dontShowAgain && (
+                    <Check className="w-3.5 h-3.5 text-white stroke-3" />
+                  )}
+                </div>
               </div>
-            </div>
-            <span className="text-xs font-mono uppercase tracking-widest text-[#888] group-hover:text-[#ccc] transition-colors">
-              Don't show this message again
-            </span>
-          </label>
+              <span className="text-xs font-mono uppercase tracking-widest text-[#888] group-hover:text-[#ccc] transition-colors">
+                Don't show this message again
+              </span>
+            </label>
 
-          <Button
-            variant="primary"
-            onClick={handleClose}
-            className="w-full py-3! text-sm! tracking-[0.2em]"
-          >
-            I Understand
-          </Button>
+            <Button
+              variant="primary"
+              onClick={handleClose}
+              className="w-full py-3! text-sm! tracking-[0.2em]"
+            >
+              I Understand
+            </Button>
+          </div>
         </div>
       </div>
     </div>

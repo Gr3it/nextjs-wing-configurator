@@ -11,7 +11,7 @@ import DisclaimerModal from "@/components/UI/DisclaimerModal";
 
 export default function Home() {
   return (
-    <main className="relative w-screen h-screen overflow-hidden">
+    <main className="relative w-full h-dvh overflow-hidden">
       {/* 3D Scene Layer */}
       <Scene />
 
