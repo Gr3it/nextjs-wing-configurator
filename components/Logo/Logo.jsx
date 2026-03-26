@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const SvgIcon = (props) => (
+const Logo = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.5 5" {...props}>
     <path
       fill="var(--accent)"
@@ -16,4 +16,4 @@ const SvgIcon = (props) => (
   </svg>
 );
 
-export default SvgIcon;
+export default Logo;

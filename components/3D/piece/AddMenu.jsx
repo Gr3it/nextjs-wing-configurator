@@ -5,15 +5,14 @@ import piecesData from "@/data/pieces.json";
 import { addPiece } from "@/store/wingState";
 
 /**
- * PieceAddMenu
- * HTML overlay anchored to the clicked ConnectorButton.
+ * AddMenu — HTML overlay anchored to a ConnectorButton.
  * Shows compatible pieces for the connector type and adds them to the store.
  *
  * Props:
- *  connectorType  — e.g. "A1", "A2"
+ *  connectorType  — e.g. "A1", "A2", "B"
  *  parentPath     — path of the parent node in the tree (e.g. [0, 1])
- *  connectorIndex — index of the connector in the parent node
- *  onClose        — callback to close the menu
+ *  connectorIndex — index of the connector on the parent (-1 = root)
+ *  onClose        — callback to dismiss the menu
  */
 export default function AddMenu({
   connectorType,
@@ -21,172 +20,117 @@ export default function AddMenu({
   connectorIndex,
   onClose,
 }) {
-  const menuRef = useRef();
+  const menuRef = useRef(null);
+  const pointerStart = useRef(null);
 
-  // Close when clicking outside
+  // Dismiss when tapping outside
   useEffect(() => {
-    const handlePointerDown = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
-        onClose();
-      }
+    const onPointerDown = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) onClose();
     };
-    window.addEventListener("pointerdown", handlePointerDown);
-    return () => window.removeEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("pointerdown", onPointerDown);
+    return () => window.removeEventListener("pointerdown", onPointerDown);
   }, [onClose]);
 
-  // Compatible pieces for this connector type
-  const compatiblePieceIds = piecesData.connectors[connectorType] ?? [];
-  const compatiblePieces = compatiblePieceIds
+  const compatiblePieces = (piecesData.connectors[connectorType] ?? [])
     .map((id) => ({ id, piece: piecesData.pieces[id] }))
     .filter(({ piece }) => !!piece);
 
   const handleSelect = (pieceId) => {
-    let targetPath;
-    if (connectorIndex !== -1) targetPath = [...parentPath, connectorIndex];
-    else targetPath = parentPath;
+    const targetPath =
+      connectorIndex !== -1 ? [...parentPath, connectorIndex] : parentPath;
     addPiece(targetPath, pieceId);
     onClose();
   };
 
+  // Distinguish tap from scroll: only select if pointer barely moved
+  const onPiecePointerDown = (e, id) => {
+    e.stopPropagation();
+    pointerStart.current = { x: e.clientX, y: e.clientY };
+  };
+  const onPiecePointerUp = (e, id) => {
+    e.stopPropagation();
+    if (!pointerStart.current) return;
+    const moved =
+      Math.abs(e.clientX - pointerStart.current.x) < 8 &&
+      Math.abs(e.clientY - pointerStart.current.y) < 8;
+    if (moved) handleSelect(id);
+    pointerStart.current = null;
+  };
+
+  const isWide = connectorType === "B";
+  const cols = isWide ? 4 : 3;
+
   return (
     <Html center zIndexRange={[800, 900]} style={{ pointerEvents: "none" }}>
+      {/* Scrollbar-hide utility — Tailwind has no built-in for this */}
+      <style>{`
+        .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+      `}</style>
+
       <div
-        id="add-menu-container"
         ref={menuRef}
+        className="no-scrollbar rounded-xl border border-[#333] bg-[#1a1a1a] shadow-[0_8px_32px_rgba(0,0,0,0.6)] select-none overflow-y-auto overflow-x-hidden"
+        style={{
+          pointerEvents: "auto",
+          touchAction: "pan-y", // allow native scroll, block canvas gestures
+          width: isWide ? "min(650px, 60vw)" : "min(500px, 60vw)",
+          maxHeight: "65vh",
+          padding: "14px",
+        }}
         onPointerDown={(e) => e.stopPropagation()}
         onPointerMove={(e) => e.stopPropagation()}
         onWheel={(e) => e.stopPropagation()}
-        style={{
-          pointerEvents: "auto",
-          background: "#1a1a1a",
-          border: "1px solid #333",
-          borderRadius: "12px",
-          padding: "14px",
-          minWidth: connectorType === "B" ? "650px" : "500px",
-          maxHeight: "80vh",
-          overflowY: "auto",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
-          userSelect: "none",
-        }}
       >
-        <style>{`
-          #add-menu-container {
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE/Edge */
-          }
-          #add-menu-container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
-          }
-        `}</style>
         {/* Header */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "10px",
-          }}
-        >
-          <span
-            style={{
-              color: "#888",
-              fontSize: "11px",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              fontFamily: "monospace",
-            }}
-          >
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="font-mono text-[11px] uppercase tracking-widest text-[#888]">
             {connectorType} — add piece
           </span>
           <button
+            className="shrink-0 cursor-pointer bg-transparent border-none text-[#555] text-base leading-none px-0.5"
             onPointerDown={onClose}
-            style={{
-              background: "none",
-              border: "none",
-              color: "#555",
-              cursor: "pointer",
-              fontSize: "16px",
-              lineHeight: 1,
-              padding: "0 2px",
-            }}
           >
             ✕
           </button>
         </div>
 
-        {/* Piece grid */}
+        {/* Grid */}
         {compatiblePieces.length === 0 ? (
-          <div
-            style={{ color: "#555", fontSize: "11px", fontFamily: "monospace" }}
-          >
+          <p className="font-mono text-[11px] text-[#555]">
             No compatible pieces
-          </div>
+          </p>
         ) : (
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: `repeat(${connectorType === "B" ? 4 : 3}, 1fr)`,
-              gap: "10px",
-            }}
+            className="grid gap-2"
+            style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
           >
             {compatiblePieces.map(({ id, piece }) => (
               <button
                 key={id}
-                onPointerDown={() => handleSelect(id)}
-                style={{
-                  background: "#242424",
-                  border: "1px solid #383838",
-                  borderRadius: "8px",
-                  color: "#ddd",
-                  cursor: "pointer",
-                  padding: "12px 10px",
-                  fontSize: "13px",
-                  fontFamily: "monospace",
-                  textAlign: "center",
-                  lineHeight: 1.4,
-                  transition: "background 0.15s, border-color 0.15s",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  minHeight: "140px",
-                }}
-                onPointerEnter={(e) => {
-                  e.currentTarget.style.background = "#2e2e2e";
-                  e.currentTarget.style.borderColor = "#555";
-                }}
-                onPointerLeave={(e) => {
-                  e.currentTarget.style.background = "#242424";
-                  e.currentTarget.style.borderColor = "#383838";
+                className="flex flex-col items-center justify-between gap-1.5 w-full min-h-[140px] rounded-lg border border-[#383838] bg-[#242424] px-2.5 py-3 font-mono text-[13px] text-[#ddd] cursor-pointer transition-colors duration-150 hover:bg-[#2e2e2e] hover:border-[#555] active:bg-[#2e2e2e] active:border-[#555] max-sm:min-h-[80px] max-sm:px-1 max-sm:py-1.5 max-sm:gap-1"
+                style={{ touchAction: "pan-y", boxSizing: "border-box" }}
+                onPointerDown={(e) => onPiecePointerDown(e, id)}
+                onPointerUp={(e) => onPiecePointerUp(e, id)}
+                onPointerCancel={() => {
+                  pointerStart.current = null;
                 }}
               >
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "4px",
-                  }}
-                >
+                <div className="w-full flex items-center justify-center shrink-0">
                   {piece.previewImg ? (
                     <img
                       src={piece.previewImg}
                       alt={piece.label}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
-                      }}
+                      className="w-full h-auto object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
                     />
                   ) : (
-                    <span style={{ fontSize: "42px" }}>⬡</span>
+                    <span className="text-[32px]">⬡</span>
                   )}
                 </div>
-                <div style={{ color: "#aaa", fontSize: "11px" }}>
+                <span className="text-[#aaa] text-[11px] break-words text-center max-sm:text-[9px]">
                   {piece.labelnameOverride || piece.label}
-                </div>
+                </span>
               </button>
             ))}
           </div>

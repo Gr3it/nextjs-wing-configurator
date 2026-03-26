@@ -124,9 +124,9 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
                 className="text-[#888] uppercase text-xs font-mono tracking-widest border-b"
                 style={{ borderColor: "#333" }}
               >
-                <th className="px-6 py-2.5">Piece</th>
-                <th className="px-6 py-2.5 text-center">Qty</th>
-                <th className="px-6 py-2.5 text-right">Weight</th>
+                <th className="px-4 py-2.5">Piece</th>
+                <th className="px-4 py-2.5 text-center">Qty</th>
+                <th className="px-4 py-2.5 text-right">Weight</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#222]">
@@ -136,12 +136,12 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
                   className="group hover:bg-[#222] transition-all duration-150"
                   style={{ borderBottom: "1px solid #222" }}
                 >
-                  <td className="px-6 py-2">
+                  <td className="px-4 py-2">
                     <div className="text-white font-mono text-xs uppercase tracking-wide transition-colors">
                       {label}
                     </div>
                   </td>
-                  <td className="px-6 py-2 text-center">
+                  <td className="px-4 py-2 text-center">
                     <span
                       className="inline-flex items-center justify-center font-mono text-white px-2 py-0.5 rounded border text-xs"
                       style={{ background: "#222", borderColor: "#444" }}
@@ -149,7 +149,7 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
                       {pieceCounts[label].count}x
                     </span>
                   </td>
-                  <td className="px-6 py-2 text-right font-mono text-xs text-[#aaa] group-hover:text-white">
+                  <td className="px-4 py-2 text-right font-mono text-xs text-[#aaa] group-hover:text-white">
                     {(
                       pieceCounts[label].weight * pieceCounts[label].count
                     ).toLocaleString()}
@@ -166,33 +166,41 @@ export default function PiecesListModal({ isOpen, onClose, rightWingRoot }) {
           className="p-4 border-t flex flex-col md:flex-row md:items-center justify-between gap-4"
           style={{ borderColor: "#333", background: "#1a1a1a" }}
         >
-          <div className="flex items-center gap-12">
-            <div className="flex items-center gap-4">
-              <Weight className="w-4 h-4 text-[#888]" />
-              <div>
-                <span className="text-xs text-[#888] uppercase font-mono tracking-widest block mb-0.5">
-                  Build Weight
-                </span>
+          <div className="flex flex-wrap items-center gap-8 md:gap-12">
+            <div className="flex flex-col gap-1">
+              <span className="text-[10px] md:text-xs text-[#888] uppercase font-mono tracking-widest block">
+                Build Weight
+              </span>
+              <div className="flex items-center gap-2">
+                <Weight className="w-4 h-4 text-[#888]" />
                 <span className="text-lg font-mono text-white">
                   {totalWeight.toLocaleString()}{" "}
-                  <span className="text-xs text-[#888]">GR</span>
+                  <span className="text-[10px] md:text-xs text-[#888]">GR</span>
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Package className="w-4 h-4 text-[#888]" />
-              <div>
-                <span className="text-xs text-[#888] uppercase font-mono tracking-widest block mb-0.5">
-                  Total Pieces
-                </span>
+            <div className="flex flex-col gap-1">
+              <span className="text-[10px] md:text-xs text-[#888] uppercase font-mono tracking-widest block">
+                Total Pieces
+              </span>
+              <div className="flex items-center gap-2">
+                <Package className="w-4 h-4 text-[#888]" />
                 <span className="text-lg font-mono text-white">
-                  {totalPieces} <span className="text-xs text-[#888]">PCS</span>
+                  {totalPieces} <span className="text-[10px] md:text-xs text-[#888]">PCS</span>
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex items-center gap-6 md:gap-8">
+            <a
+              href="https://makerworld.com/it/models/1758694-cosplay-wings-framework-2#profileId-1870605"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-[#aaa] hover:text-white transition-colors underline underline-offset-4"
+            >
+              Link to Models
+            </a>
             <Button
               variant="primary"
               onClick={onClose}
