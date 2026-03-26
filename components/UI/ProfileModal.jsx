@@ -32,7 +32,7 @@ export default function ProfileModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4 pointer-events-auto">
+    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4 pointer-events-auto">
       {/* Modal Container */}
       <div
         className="rounded-xl shadow-2xl w-full max-w-sm overflow-hidden transform transition-all"

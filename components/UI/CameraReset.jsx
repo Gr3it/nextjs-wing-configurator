@@ -5,7 +5,7 @@ import { triggerCameraReset } from "@/store/wingState";
 
 export default function CameraReset() {
   return (
-    <div className="absolute top-4 left-88 flex flex-col gap-3 pointer-events-auto">
+    <div className="flex flex-col gap-3">
       <Button
         variant="primary"
         icon={Focus}

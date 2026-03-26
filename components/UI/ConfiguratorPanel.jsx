@@ -4,6 +4,7 @@ import { Info, List, Ruler } from "lucide-react";
 import { useSnapshot } from "valtio";
 import { state, loadCustomPresets } from "../../store/wingState";
 import MannequinControls from "./MannequinControls";
+import CameraReset from "./CameraReset";
 import ProfileControls from "./ProfileControls";
 import ImportExportActions from "./ImportExportActions";
 import PoseActions from "./PoseActions";
@@ -20,7 +21,7 @@ export default function ConfiguratorPanel() {
   }, []);
 
   return (
-    <div className="fixed inset-y-0 left-0 w-80 m-4 pointer-events-none flex flex-col gap-4">
+    <div className="fixed inset-y-0 left-0 w-80 m-4 pointer-events-none flex flex-col gap-4 z-50">
       {/* Controls Card */}
       <div
         className="p-5 rounded-xl pointer-events-auto overflow-y-auto overflow-x-hidden max-h-[calc(100vh-2rem)] scrollbar-hide"
@@ -43,6 +44,7 @@ export default function ConfiguratorPanel() {
         <div className="space-y-6">
           {/* Mannequin Controls */}
           <MannequinControls />
+          <CameraReset />
 
           <hr className="border-[#333]" />
 
