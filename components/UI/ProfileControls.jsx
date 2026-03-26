@@ -110,7 +110,7 @@ export default function ProfileControls() {
         </div>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row gap-2">
         <Button
           onClick={handleRenameClick}
           disabled={!isSelectedCustom}

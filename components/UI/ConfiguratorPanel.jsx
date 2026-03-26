@@ -21,7 +21,7 @@ export default function ConfiguratorPanel() {
   }, []);
 
   return (
-    <div className="fixed inset-y-0 left-0 w-80 m-4 pointer-events-none flex flex-col gap-4 z-50">
+    <div className="fixed inset-y-0 left-0 w-60 sm:w-80 m-4 pointer-events-none flex flex-col gap-4 z-50">
       {/* Controls Card */}
       <div
         className="p-5 rounded-xl pointer-events-auto overflow-y-auto overflow-x-hidden max-h-[calc(100vh-2rem)] scrollbar-hide"
