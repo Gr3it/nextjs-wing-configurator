@@ -26,6 +26,19 @@ export default function Home() {
         <Logo className="block md:hidden h-12 w-auto text-slate-200" />
       </div>
 
+      {/* Ko-fi */}
+      <div className="absolute bottom-4 right-4 text-right pointer-events-auto">
+        <a href="https://ko-fi.com/R6R23OSRW" target="_blank">
+          <img
+            height="36"
+            style={{ border: "0px", height: "36px" }}
+            src="https://storage.ko-fi.com/cdn/kofi3.png?v=6"
+            border="0"
+            alt="Buy Me a Coffee at ko-fi.com"
+          />
+        </a>
+      </div>
+
       {/* Footer / Credits Overlay */}
       <div className="absolute bottom-3 left-0 w-full text-center text-[10px] sm:text-xs text-black pointer-events-auto">
         Website by{" "}

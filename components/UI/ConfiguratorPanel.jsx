@@ -9,6 +9,7 @@ import ImportExportActions from "./ImportExportActions";
 import PoseActions from "./PoseActions";
 import Button from "./Button";
 import PiecesListModal from "./PiecesListModal";
+import DisplayOverlays from "./displayOverlays";
 
 export default function ConfiguratorPanel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,44 +57,21 @@ export default function ConfiguratorPanel() {
           {/* Pose Controls */}
           <PoseActions />
 
+          {/* Measurements Toggle */}
+          <hr className="border-[#333]" />
+          <DisplayOverlays />
+
           <hr className="border-[#333]" />
 
-          {/* Measurements Toggle */}
-          <div className="flex items-center justify-between p-1">
-            <div className="flex items-center gap-2">
-              <Ruler
-                className={`w-3.5 h-3.5 ${snap.showGizmo ? "text-white" : "text-[#888]"}`}
-              />
-              <span className="text-xs font-mono text-[#ccc] uppercase tracking-widest">
-                Measurements (m)
-              </span>
-            </div>
-
-            <button
-              onClick={() => (state.showGizmo = !state.showGizmo)}
-              className={`relative inline-flex h-4 w-8 items-center rounded-full transition-colors focus:outline-none cursor-pointer ${
-                snap.showGizmo ? "bg-accent" : "bg-[#333]"
-              }`}
-            >
-              <span
-                className={`inline-block h-2.5 w-2.5 transform rounded-full bg-white transition-transform ${
-                  snap.showGizmo ? "translate-x-4.5" : "translate-x-1"
-                }`}
-              />
-            </button>
-          </div>
-
           {/* Pieces Summary Action */}
-          <div className="pt-2">
-            <Button
-              variant="primary"
-              icon={List}
-              onClick={() => setIsModalOpen(true)}
-              className="w-full"
-            >
-              Show pieces list
-            </Button>
-          </div>
+          <Button
+            variant="primary"
+            icon={List}
+            onClick={() => setIsModalOpen(true)}
+            className="w-full"
+          >
+            Pieces List
+          </Button>
         </div>
       </div>
 
