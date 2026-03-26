@@ -595,7 +595,7 @@
         {
           "position": [0.0395, 0.01, -0.001],
           "type": "B",
-          "customRotation": [0, 22.5, 0]
+          "customRotation": [0, -22.5, 0]
         }
       ],
       "symmetrical": "H_Rhinge_up_male",
