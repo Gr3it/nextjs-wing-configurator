@@ -8,6 +8,7 @@ import BugReport from "@/components/UI/BugReport";
 import Button from "@/components/UI/Button";
 import { Coffee, Heart } from "lucide-react";
 import DisclaimerModal from "@/components/UI/DisclaimerModal";
+import Tutorial from "@/components/UI/Tutorial";
 
 export default function Home() {
   return (
@@ -20,6 +21,9 @@ export default function Home() {
 
       {/* Disclaimer Modal */}
       <DisclaimerModal />
+
+      {/* Tutorial */}
+      <Tutorial />
 
       {/* Title / Info Overlay */}
       <div className="absolute top-4 right-6 text-right pointer-events-none">

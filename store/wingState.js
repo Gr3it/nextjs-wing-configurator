@@ -80,6 +80,7 @@ export const state = proxy({
   basePresets: ["empty", "angel", "dragon", "showcase"],
   cameraResetKey: 0,
   showGizmo: false,
+  showTutorial: false,
 });
 
 // Re-export for compatibility if needed, though state.presets is preferred

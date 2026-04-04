@@ -49,7 +49,7 @@ export default function ConfiguratorPanel() {
           <hr className="border-[#333]" />
 
           {/* Profile Selection & Management */}
-          <div className="space-y-2">
+          <div id="presets-section" className="space-y-2">
             <ProfileControls />
             <ImportExportActions />
           </div>
@@ -67,6 +67,7 @@ export default function ConfiguratorPanel() {
 
           {/* Pieces Summary Action */}
           <Button
+            id="pieces-list-button"
             variant="primary"
             icon={List}
             onClick={() => setIsModalOpen(true)}

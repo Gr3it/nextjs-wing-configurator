@@ -6,7 +6,7 @@ export default function MannequinControls() {
   const snap = useSnapshot(state);
 
   return (
-    <div className="space-y-4">
+    <div id="mannequin-controls" className="space-y-4">
       <div className="space-y-1">
         <div className="flex justify-between items-center px-0.5">
           <label className="text-xs font-mono text-[#ccc] uppercase tracking-widest">

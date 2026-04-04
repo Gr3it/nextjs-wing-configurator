@@ -128,7 +128,7 @@ export default function AddMenu({
                     <span className="text-[32px]">⬡</span>
                   )}
                 </div>
-                <span className="text-[#aaa] text-[11px] break-words text-center max-sm:text-[9px]">
+                <span className="text-[#aaa] text-[11px] wrap-break-word text-center max-sm:text-[9px]">
                   {piece.labelnameOverride || piece.label}
                 </span>
               </button>

@@ -46,7 +46,7 @@ export default function ProfileControls() {
   };
 
   return (
-    <div className="space-y-4">
+    <div id="profile-controls" className="space-y-4">
       <div>
         <label className="text-xs font-mono text-[#ccc] uppercase tracking-widest block mb-2">
           Preset Profile

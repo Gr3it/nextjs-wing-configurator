@@ -10,6 +10,7 @@ import {
   Check,
 } from "lucide-react";
 import Button from "./Button";
+import { state } from "@/store/wingState";
 
 export default function DisclaimerModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +28,12 @@ export default function DisclaimerModal() {
       localStorage.setItem("hasSeenDisclaimer", "true");
     }
     setIsOpen(false);
+    
+    // Start tutorial when closed
+    const hasSeenTutorial = localStorage.getItem("hasSeenTutorial");
+    if (!hasSeenTutorial) {
+      state.showTutorial = true;
+    }
   };
 
   if (!isOpen) return null;

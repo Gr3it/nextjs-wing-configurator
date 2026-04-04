@@ -18,7 +18,7 @@ import { config } from "@/config";
 
 export default function Scene() {
   return (
-    <div className="w-screen h-screen bg-slate-100">
+    <div id="three-canvas-container" className="w-screen h-screen bg-slate-100">
       <Canvas shadows camera={config.camera}>
         {config.showStats && <Stats />}
         <Suspense fallback={null}>

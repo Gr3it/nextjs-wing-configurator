@@ -65,7 +65,7 @@ export default function ImportExportActions() {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row gap-2">
+    <div id="import-export-actions" className="flex flex-col sm:flex-row gap-2">
       <Button onClick={handleExport} variant="primary" icon={Download}>
         Export
       </Button>
