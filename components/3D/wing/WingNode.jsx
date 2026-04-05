@@ -8,10 +8,14 @@ import { clearActive, setActive, state } from "@/store/wingState";
 import {
   AddButton as ConnectorButton,
   DeleteButton as PieceDeleteButton,
+  HingeWarnings,
 } from "../piece";
 import { useHighlightedScene } from "@/hooks/useHighlightedScene";
 import { useNodeRotation } from "@/hooks/useNodeRotation";
 import ExtraPiece from "./ExtraPiece";
+
+/** Piece sources that represent a hinge joint. */
+const HINGE_SOURCES = new Set(["HL", "HR"]);
 
 export default function WingNode({
   node,
@@ -83,8 +87,8 @@ function WingNodeInner({ node, path, isRight, position, pieceInfo }) {
   }, []);
 
   const mainScene = useHighlightedScene(scene, isActive, isHovered);
-
   const canRotate = isActive && rotationAxis !== undefined;
+  const isHinge = HINGE_SOURCES.has(pieceInfo.source);
 
   return (
     <group position={position}>
@@ -113,6 +117,7 @@ function WingNodeInner({ node, path, isRight, position, pieceInfo }) {
           enabled={canRotate}
         />
       </group>
+
       <group
         ref={targetRef}
         matrixAutoUpdate={false}
@@ -156,6 +161,15 @@ function WingNodeInner({ node, path, isRight, position, pieceInfo }) {
           );
         })}
       </group>
+
+      {/* Hinge detachment warning — self-contained, renders 2 units above */}
+      {isHinge && (
+        <HingeWarnings
+          meshRef={targetRef}
+          label={pieceInfo.labelnameOverride ?? pieceInfo.label}
+        />
+      )}
+
       <PieceDeleteButton path={path} isActive={isActive} />
     </group>
   );
