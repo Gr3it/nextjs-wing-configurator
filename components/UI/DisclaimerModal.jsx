@@ -28,7 +28,7 @@ export default function DisclaimerModal() {
       localStorage.setItem("hasSeenDisclaimer", "true");
     }
     setIsOpen(false);
-    
+
     // Start tutorial when closed
     const hasSeenTutorial = localStorage.getItem("hasSeenTutorial");
     if (!hasSeenTutorial) {
@@ -101,59 +101,6 @@ export default function DisclaimerModal() {
             </section>
           </div>
 
-          <section className="space-y-4 pt-4 border-t border-[#222]">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-[#aaa]">
-              Support the Creators
-            </h4>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Greit Support */}
-              <div className="flex flex-col justify-between space-y-3">
-                <p className="text-xs text-[#888] leading-relaxed font-sans">
-                  Website created by <strong>Greit</strong>. Your coffee
-                  contribution directly supports the host and the ongoing
-                  development of this tool.
-                </p>
-                <a
-                  href="https://ko-fi.com/R6R23OSRW"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between gap-3 p-3 rounded-xl bg-[#2a2a2a] border border-[#383838] hover:bg-[#333] hover:border-[#444] transition-all group mt-auto"
-                >
-                  <div className="flex items-center gap-3">
-                    <Coffee className="w-5 h-5 text-amber-400" />
-                    <span className="text-xs font-mono uppercase text-white">
-                      Buy the dev a coffee
-                    </span>
-                  </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#666] group-hover:text-white" />
-                </a>
-              </div>
-
-              {/* bzioo Support */}
-              <div className="flex flex-col justify-between space-y-3">
-                <p className="text-xs text-[#888] leading-relaxed font-sans">
-                  3D models created by <strong>Bzioo</strong>. Support him by
-                  joining his Patreon community.
-                </p>
-                <a
-                  href="https://patreon.com/cw/bzioo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between gap-3 p-3 rounded-xl bg-[#2a2a2a] border border-[#383838] hover:bg-[#333] hover:border-[#444] transition-all group mt-auto"
-                >
-                  <div className="flex items-center gap-3">
-                    <Heart className="w-5 h-5 text-rose-500" />
-                    <span className="text-xs font-mono uppercase text-white">
-                      Support bzioo
-                    </span>
-                  </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-[#666] group-hover:text-white" />
-                </a>
-              </div>
-            </div>
-          </section>
-          
           {/* Action Area (Now part of scroll) */}
           <div className="-mx-4 md:-mx-6 px-4 md:px-6 pt-6 border-t border-[#333] flex flex-col gap-4">
             <label className="flex items-center gap-3 cursor-pointer group select-none">

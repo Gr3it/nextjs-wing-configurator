@@ -25,7 +25,7 @@ export const config = {
   },
   camera: {
     position: [0, 2, 5],
-    fov: 45,
+    fov: 30,
   },
   preview: {
     /** Output image dimensions */

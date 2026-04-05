@@ -22,15 +22,16 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: "Icarus | Wing Configurator",
+  title: "ICARUS | Cosplay Wing Configurator",
   description:
-    "Icarus is a high-performance 3D wing configurator. Design, customize, and build your own custom wing set with professional precision and real-time previews.",
+    "ICARUS is a professional 3D wing configurator for cosplayers. Create custom wing skeleton presets, pose your builds, and prepare your wing building kit for 3D printing.",
   appleWebApp: {
     title: "Icarus",
     statusBarStyle: "default",
     capable: true,
   },
 };
+
 
 export default function RootLayout({ children }) {
   return (
