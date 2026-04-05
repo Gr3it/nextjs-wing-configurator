@@ -9,6 +9,7 @@ import {
   AddButton as ConnectorButton,
   DeleteButton as PieceDeleteButton,
   HingeWarnings,
+  A1MiniWarning,
 } from "../piece";
 import { useHighlightedScene } from "@/hooks/useHighlightedScene";
 import { useNodeRotation } from "@/hooks/useNodeRotation";
@@ -129,7 +130,6 @@ function WingNodeInner({ node, path, isRight, position, pieceInfo }) {
         {pieceInfo.extra?.map((extraKey) => (
           <ExtraPiece key={extraKey} pieceKey={extraKey} active={isActive} />
         ))}
-
         {pieceInfo.connectors?.map((conn, idx) => {
           const childNode = node.children?.[idx];
           const connPos = b2t(conn.position);
@@ -159,16 +159,23 @@ function WingNodeInner({ node, path, isRight, position, pieceInfo }) {
               )}
             </group>
           );
-        })}
+        })}{" "}
+        {isHinge && (
+          <HingeWarnings
+            meshRef={targetRef}
+            object={mainScene}
+            label={pieceInfo.labelnameOverride ?? pieceInfo.label}
+          />
+        )}
+        {/* A1 mini incompatibility warning */}
+        <A1MiniWarning
+          meshRef={targetRef}
+          object={mainScene}
+          requiresLargeBed={pieceInfo.requiresLargeBed}
+        />
       </group>
 
       {/* Hinge detachment warning — self-contained, renders 2 units above */}
-      {isHinge && (
-        <HingeWarnings
-          meshRef={targetRef}
-          label={pieceInfo.labelnameOverride ?? pieceInfo.label}
-        />
-      )}
 
       <PieceDeleteButton path={path} isActive={isActive} />
     </group>

@@ -11,6 +11,7 @@ import PoseActions from "./PoseActions";
 import Button from "./Button";
 import PiecesListModal from "./PiecesListModal";
 import DisplayOverlays from "./displayOverlays";
+import A1MiniToggle from "./A1MiniToggle";
 
 export default function ConfiguratorPanel() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +45,10 @@ export default function ConfiguratorPanel() {
         <div className="space-y-6">
           {/* Mannequin Controls */}
           <MannequinControls />
+
           <CameraReset />
+
+          <A1MiniToggle />
 
           <hr className="border-[#333]" />
 

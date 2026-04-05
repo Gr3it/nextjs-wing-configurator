@@ -1,8 +1,9 @@
 "use client";
 import { Html } from "@react-three/drei";
 import { useEffect, useRef } from "react";
+import { useSnapshot } from "valtio";
 import piecesData from "@/data/pieces.json";
-import { addPiece } from "@/store/wingState";
+import { addPiece, state } from "@/store/wingState";
 
 /**
  * AddMenu — HTML overlay anchored to a ConnectorButton.
@@ -32,9 +33,15 @@ export default function AddMenu({
     return () => window.removeEventListener("pointerdown", onPointerDown);
   }, [onClose]);
 
+  const snap = useSnapshot(state);
+
   const compatiblePieces = (piecesData.connectors[connectorType] ?? [])
     .map((id) => ({ id, piece: piecesData.pieces[id] }))
-    .filter(({ piece }) => !!piece);
+    .filter(({ piece }) => {
+      if (!piece) return false;
+      if (snap.a1MiniOnly && piece.requiresLargeBed) return false;
+      return true;
+    });
 
   const handleSelect = (pieceId) => {
     const targetPath =

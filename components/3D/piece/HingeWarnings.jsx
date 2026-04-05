@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
@@ -26,9 +26,21 @@ const RAD_TO_DEG = 180 / Math.PI;
  *
  * @param {{ meshRef: React.RefObject, label: string }} props
  */
-export default function HingeWarnings({ meshRef, label }) {
+export default function HingeWarnings({ meshRef, object, label }) {
   const [warningAngle, setWarningAngle] = useState(null);
+  const [localCenter, setLocalCenter] = useState([0, 0, 0]);
   const lastRef = useRef(null);
+
+  useEffect(() => {
+    if (meshRef?.current && object) {
+      meshRef.current.updateMatrixWorld();
+      const box = new THREE.Box3().setFromObject(object);
+      const centerV = new THREE.Vector3();
+      box.getCenter(centerV);
+      meshRef.current.worldToLocal(centerV);
+      setLocalCenter([centerV.x, centerV.y, centerV.z]);
+    }
+  }, [meshRef, object]);
 
   useFrame(() => {
     if (!meshRef?.current) return;
@@ -62,7 +74,8 @@ export default function HingeWarnings({ meshRef, label }) {
 
   return (
     <Html
-      position={[0, 0.05, 0]}
+      center
+      position={localCenter}
       zIndexRange={[50, 100]}
       style={{ pointerEvents: "none" }}
     >
@@ -71,7 +84,7 @@ export default function HingeWarnings({ meshRef, label }) {
           display: "flex",
           alignItems: "center",
           gap: "8px",
-          background: "rgba(234, 88, 12, 0.70)",
+          background: "rgba(234, 88, 12, 0.35)",
           color: "#fff",
           padding: "6px 14px",
           borderRadius: "10px",

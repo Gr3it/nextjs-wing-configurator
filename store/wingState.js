@@ -81,6 +81,7 @@ export const state = proxy({
   cameraResetKey: 0,
   showGizmo: false,
   showTutorial: false,
+  a1MiniOnly: false,
 });
 
 // Re-export for compatibility if needed, though state.presets is preferred
