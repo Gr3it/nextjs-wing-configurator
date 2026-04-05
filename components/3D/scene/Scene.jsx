@@ -5,7 +5,7 @@ import {
   Bounds,
   Sky,
   Environment,
-  ContactShadows,
+  Shadow,
   Stats,
 } from "@react-three/drei";
 import { Suspense } from "react";
@@ -31,13 +31,16 @@ export default function Scene() {
             <WingAssembly />
           </Bounds>
 
-          <ContactShadows
-            opacity={0.5}
-            scale={10}
-            blur={2.4}
-            far={10}
-            resolution={256}
+          {/* 
+            Static radial shadow to avoid "ContactShadows" bugs with PivotControls.
+            This creates a clean, blurred circular shadow at the center.
+          */}
+          <Shadow
             color="#000000"
+            opacity={0.15}
+            scale={[3, 3, 1]}
+            position={[0, 0, -0.12]}
+            rotation-x={-Math.PI / 2}
           />
         </Suspense>
 
