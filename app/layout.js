@@ -32,7 +32,6 @@ export const metadata = {
   },
 };
 
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -50,6 +49,10 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-PQ2JLKHD00');
           `}
         </Script>
+        <meta
+          name="google-site-verification"
+          content="i1CkgyIggwuJctqNUkEBghEpkKwMqCHsXg1p92O5-v4"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
