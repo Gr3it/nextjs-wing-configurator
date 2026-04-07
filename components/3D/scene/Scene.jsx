@@ -23,9 +23,9 @@ export default function Scene() {
         {config.showStats && <Stats />}
         <Suspense fallback={null}>
           <Environment preset="city" />
-          <Sky sunPosition={[100, 20, 100]} />
+          {!config.pictureMode && <Sky sunPosition={[100, 20, 100]} />}
 
-          <Mannequin />
+          {!config.pictureMode && <Mannequin />}
           <Bounds fit>
             <CameraResetController />
             <WingAssembly />
@@ -35,13 +35,15 @@ export default function Scene() {
             Static radial shadow to avoid "ContactShadows" bugs with PivotControls.
             This creates a clean, blurred circular shadow at the center.
           */}
-          <Shadow
-            color="#000000"
-            opacity={0.15}
-            scale={[3, 3, 1]}
-            position={[0, 0, -0.12]}
-            rotation-x={-Math.PI / 2}
-          />
+          {!config.pictureMode && (
+            <Shadow
+              color="#000000"
+              opacity={0.15}
+              scale={[3, 3, 1]}
+              position={[0, 0, -0.12]}
+              rotation-x={-Math.PI / 2}
+            />
+          )}
         </Suspense>
 
         <OrbitControls makeDefault zoomSpeed={2} />

@@ -10,13 +10,34 @@ import { Coffee, Heart } from "lucide-react";
 import DisclaimerModal from "@/components/UI/DisclaimerModal";
 import Tutorial from "@/components/UI/Tutorial";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { config } from "@/config";
 
 export default function ConfiguratorPage() {
-  /*   return (
-    <main className="relative w-full h-dvh overflow-hidden">
-      <Scene />
-    </main>
-  ); */
+  const [showPanel, setShowPanel] = useState(true);
+
+  useEffect(() => {
+    if (!config.pictureMode) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === "F1") {
+        e.preventDefault();
+        setShowPanel((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  if (config.pictureMode) {
+    return (
+      <main className="relative w-full h-dvh overflow-hidden bg-white">
+        <Scene />
+        {showPanel && <ConfiguratorPanel />}
+      </main>
+    );
+  }
+
   return (
     <main className="relative w-full h-dvh overflow-hidden">
       {/* 3D Scene Layer */}

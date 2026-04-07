@@ -1,8 +1,9 @@
 export const config = {
   showStats: false,
+  pictureMode: false,
   /** Hinge inclination threshold (degrees). If a hinge rotation exceeds this
    *  value a 3D warning is displayed in the scene via HingeWarnings.jsx */
-  hingeWarningAngleDeg: 50,
+  hingeWarningAngleDeg: 60,
   connectors: {
     add: {
       color: "#27272a",

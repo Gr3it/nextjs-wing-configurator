@@ -170,22 +170,25 @@
                                     ]
                                   },
                                   {
-                                    "piece": "C_Rhinge_down_female",
+                                    "piece": "C_Rhinge_flat_female",
                                     "rotation": {
                                       "base": 0,
                                       "current": 0
                                     },
                                     "children": [
                                       {
-                                        "piece": "H_Rhinge_flat_male",
+                                        "piece": "H_Rhinge_down_male",
                                         "rotation": {
-                                          "base": 0.40593461184160357,
-                                          "current": 0.40593461184160357
+                                          "base": 0,
+                                          "current": 0.3413992539326434
                                         },
                                         "children": [
                                           {
-                                            "piece": "B_arm_wing_small",
-                                            "rotation": {},
+                                            "piece": "B_arm_wing_medium",
+                                            "rotation": {
+                                              "base": 0,
+                                              "current": 0
+                                            },
                                             "children": [
                                               {
                                                 "piece": "C_connector_coupler",
