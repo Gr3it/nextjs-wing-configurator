@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import * as THREE from "three";
 import { Html } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { useSnapshot } from "valtio";
 import { state } from "@/store/wingState";
 
@@ -12,19 +13,26 @@ import { state } from "@/store/wingState";
 export default function A1MiniWarning({ meshRef, object, requiresLargeBed }) {
   const snap = useSnapshot(state);
   const [localCenter, setLocalCenter] = useState([0, 0, 0]);
+  // Flag to run the center calculation only once per mount, after the first
+  // R3F frame — at that point world matrices are guaranteed to be propagated.
+  const computed = useRef(false);
+  const frames = useRef(0);
 
-  useEffect(() => {
-    if (meshRef?.current && object) {
-      // Ensure world matrices are computed
-      meshRef.current.updateMatrixWorld();
-      const box = new THREE.Box3().setFromObject(object);
-      const centerV = new THREE.Vector3();
-      box.getCenter(centerV);
-      // Back to local coordinates
-      meshRef.current.worldToLocal(centerV);
-      setLocalCenter([centerV.x, centerV.y, centerV.z]);
+  useFrame(() => {
+    if (computed.current || !meshRef?.current || !object) return;
+    
+    if (frames.current < 2) {
+      frames.current++;
+      return;
     }
-  }, [meshRef, object, requiresLargeBed]);
+    
+    computed.current = true;
+    const box = new THREE.Box3().setFromObject(object);
+    const centerV = new THREE.Vector3();
+    box.getCenter(centerV);
+    meshRef.current.worldToLocal(centerV);
+    setLocalCenter([centerV.x, centerV.y, centerV.z]);
+  });
 
   if (!snap.a1MiniOnly || !requiresLargeBed) return null;
 

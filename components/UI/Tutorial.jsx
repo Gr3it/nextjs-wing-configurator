@@ -143,16 +143,17 @@ export default function Tutorial() {
         target: "#presets-section",
         title: "Chapter 3/5: Profiles & Presets",
         content: (
-          <div className="space-y-2 text-sm text-left">
+          <div className="space-y-4 text-sm text-left">
             <p>
               Use the dropdown to find <b>Base Presets</b> or manage your custom
               profiles.
             </p>
             <p>
-              You can also <b>Import/Export</b> your profile configurations here
-              to save local copies.
+              After finishing a build, it is{" "}
+              <b className="text-white">highly recommended</b> to export the
+              profile to have a local save of your configuration.
             </p>
-            <p className="text-amber-500 uppercase font-bold">
+            <p className="text-[10px] text-amber-500 uppercase font-bold">
               Note: these files save site presets only, not 3D models.
             </p>
           </div>

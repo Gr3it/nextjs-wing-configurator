@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import {
   X,
   AlertTriangle,
-  Save,
-  Coffee,
-  Heart,
-  ExternalLink,
+  FlaskConical,
+  Layers,
+  ShieldCheck,
+  Zap,
   Check,
 } from "lucide-react";
 import Button from "./Button";
@@ -71,33 +71,110 @@ export default function DisclaimerModal() {
 
         {/* Content */}
         <div className="p-4 md:p-6 space-y-6 md:space-y-8 overflow-y-auto scrollbar-hide flex-1 min-h-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <section className="space-y-3">
-              <h4 className="text-xs font-mono uppercase tracking-widest text-[#aaa] flex items-center gap-2">
-                <div className="w-1 h-1 bg-amber-500 rounded-full" />
-                Build & Material Strength
-              </h4>
-              <p className="text-xs text-[#ccc] leading-relaxed font-sans">
-                You have to check yourself the duality of the build material and
-                strength wise, because that is also based on the weight you add
-                to the skeleton and different materials for prints have
-                different strength.
+          <div className="space-y-8">
+            {/* Intro */}
+            <section className="space-y-4">
+              <p className="text-sm text-[#ccc] leading-relaxed font-sans border-l-2 border-amber-500/30 pl-4 py-1 italic">
+                The structural integrity of your build depends on your material
+                choice, print settings, and the final weight of the cladding
+                (feathers, electronics, etc.).
               </p>
             </section>
 
-            <section className="space-y-3">
-              <h4 className="text-xs font-mono uppercase tracking-widest text-[#aaa] flex items-center gap-2">
-                <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                Local Save Recommended
-              </h4>
-              <div className="flex gap-3 items-start p-4 rounded-xl bg-[#222] border border-[#333]">
-                <Save className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
-                <p className="text-xs text-[#ccc] leading-relaxed">
-                  After finishing a build, it is{" "}
-                  <strong>highly recommended</strong> to export it to have a
-                  local save of your configuration.
-                </p>
+            {/* Material Recommendation */}
+            <section className="space-y-5">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                  <FlaskConical className="w-4 h-4 text-blue-400" />
+                </div>
+                <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#888]">
+                  Material Selection
+                </h4>
               </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 rounded-xl bg-[#222] border border-[#333] hover:border-blue-500/30 transition-colors group">
+                  <p className="text-[10px] font-mono text-blue-400 uppercase tracking-widest mb-2 font-bold">
+                    Standard Builds
+                  </p>
+                  <p className="text-xs text-[#aaa] leading-relaxed">
+                    <b className="text-[#ccc]">PLA+ / Tough PLA:</b> Excellent
+                    for medium wings. Offers better impact resistance than base
+                    PLA.
+                  </p>
+                </div>
+                <div className="p-4 rounded-xl bg-[#222]/50 border border-blue-900/30 hover:border-blue-500/30 transition-colors group ring-1 ring-blue-500/5">
+                  <p className="text-[10px] font-mono text-blue-400 uppercase tracking-widest mb-2 font-bold">
+                    X-Large Wings (1m+)
+                  </p>
+                  <p className="text-xs text-[#aaa] leading-relaxed">
+                    <b className="text-[#ccc]">PETG / ASA / PA-CF:</b> Highly
+                    recommended. Higher durability and thermal resistance for
+                    large spans.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Reinforcement */}
+            <section className="space-y-5">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                  <Layers className="w-4 h-4 text-emerald-400" />
+                </div>
+                <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-[#888]">
+                  Structural Reinforcement
+                </h4>
+              </div>
+
+              <div className="p-5 rounded-xl bg-[#222] border border-[#333] space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                  <div className="space-y-1">
+                    <p className="text-xs text-white font-bold tracking-tight">
+                      Reinforced Core Settings
+                    </p>
+                    <p className="text-xs text-[#888] leading-relaxed">
+                      For pieces near the mannequin (base nodes), use at least{" "}
+                      <b>4-6 wall loops</b> and <b>25% Gyroid infill</b>.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 pt-4 border-t border-[#333]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
+                  <div className="space-y-1">
+                    <p className="text-xs text-white font-bold tracking-tight">
+                      Hinge Integrity
+                    </p>
+                    <p className="text-xs text-[#888] leading-relaxed">
+                      Small connectors need 100% infill to prevent snapping
+                      under the weight of the outer wing tiers.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 pt-4 border-t border-[#333]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+                  <div className="space-y-1">
+                    <p className="text-xs text-white font-bold tracking-tight">
+                      Load Management
+                    </p>
+                    <p className="text-xs text-[#888] leading-relaxed">
+                      The cladding weight (feathers, electronics) significantly
+                      impacts the base nodes. Reinforced settings are mandatory
+                      for heavy builds.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Important Alert */}
+            <section className="p-4 rounded-xl bg-orange-500/5 border border-orange-500/20 flex gap-4 items-center">
+              <ShieldCheck className="w-8 h-8 text-orange-500/50 shrink-0" />
+              <p className="text-[11px] text-[#aaa] leading-relaxed uppercase tracking-wide">
+                Always perform a physical test of a single joint before printing
+                the full wing to verify tolerances.
+              </p>
             </section>
           </div>
 

@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import * as THREE from "three";
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
@@ -30,20 +30,27 @@ export default function HingeWarnings({ meshRef, object, label }) {
   const [warningAngle, setWarningAngle] = useState(null);
   const [localCenter, setLocalCenter] = useState([0, 0, 0]);
   const lastRef = useRef(null);
+  const frames = useRef(0);
+  const computed = useRef(false);
 
-  useEffect(() => {
-    if (meshRef?.current && object) {
-      meshRef.current.updateMatrixWorld();
+  useFrame(() => {
+    if (!meshRef?.current) return;
+
+    // Wait 2 frames. In the first useFrame, R3F's renderer hasn't yet 
+    // called scene.updateMatrixWorld(). Skipping frames ensures the parents'
+    // world matrices are fully computed.
+    if (!computed.current && object) {
+      if (frames.current < 2) {
+        frames.current++;
+        return;
+      }
+      computed.current = true;
       const box = new THREE.Box3().setFromObject(object);
       const centerV = new THREE.Vector3();
       box.getCenter(centerV);
       meshRef.current.worldToLocal(centerV);
       setLocalCenter([centerV.x, centerV.y, centerV.z]);
     }
-  }, [meshRef, object]);
-
-  useFrame(() => {
-    if (!meshRef?.current) return;
 
     // Get the world-space quaternion of the hinge group directly from
     // the Three.js scene graph — no manual matrix math needed.
