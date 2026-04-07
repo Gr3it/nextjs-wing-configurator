@@ -90,34 +90,28 @@ export default function DisclaimerModal() {
                 </h4>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   {
                     title: "Light Builds",
-                    text: "PLA: Small wings, dry environments.",
+                    text: "PLA: Good for small wings and dry environments.",
+                    material: "PLA",
                   },
                   {
                     title: "Heavier Loads",
-                    text: "PLA+: Enhanced impact resistance.",
-                  },
-                  {
-                    title: "Large Spans",
-                    text: "ASA / ABS: Better durability & stability.",
-                  },
-                  {
-                    title: "Technical",
-                    text: "PA-CF/PET-CF: For extreme demands.",
+                    text: "PETG / PLA+: Enhanced impact resistance and durability.",
+                    material: "PETG / PLA+",
                   },
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="p-3 rounded-xl bg-[#222] border border-[#333] hover:border-blue-500/30 transition-colors group"
+                    className="p-4 rounded-xl bg-[#222] border border-[#333]"
                   >
                     <p className="text-xs font-mono text-blue-400 uppercase tracking-widest mb-1.5 font-bold">
                       {item.title}
                     </p>
                     <p className="text-xs text-[#aaa] leading-snug">
-                      {item.text}
+                      <b className="text-white/90">{item.material}:</b> {item.text.split(': ')[1] || item.text}
                     </p>
                   </div>
                 ))}
