@@ -14,6 +14,7 @@ import WingAssembly from "../wing/WingAssembly";
 import EscDeselect from "../../UI/EscDeselect";
 import Mannequin from "../mannequin/Mannequin";
 import CameraResetController from "./CameraResetController";
+import SceneExporter from "./SceneExporter";
 import { config } from "@/config";
 
 export default function Scene() {
@@ -22,6 +23,7 @@ export default function Scene() {
       <Canvas shadows camera={config.camera}>
         {config.showStats && <Stats />}
         <Suspense fallback={null}>
+          {/* <SceneExporter /> */}
           <Environment preset="city" />
           {!config.pictureMode && <Sky sunPosition={[100, 20, 100]} />}
 
