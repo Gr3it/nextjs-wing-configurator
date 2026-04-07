@@ -3,26 +3,32 @@
     "folder": "models/parts/"
   },
   "pieces": {
-    "backplate_clip": {
-      "label": "Backplate clip",
-      "printWeight": 11
+    "backplate_clips": {
+      "label": "Backplate clips (4x)",
+      "printWeight": 44
     },
-    "backplate_mount": {
-      "label": "Backplate mount",
+    "backplate_mounts": {
+      "label": "Backplate mounts (2x)",
+      "printWeight": 26
+    },
+    "backplate_bolts": {
+      "label": "Bolts set (Hinges 4x + Backplate 2x)",
+      "printWeight": 10
+    },
+    "t_key": {
+      "label": "T-key",
       "printWeight": 13
     },
     "backplate": {
       "file": "backplate-transformed.glb",
-      "label": "Backplate",
+      "label": "Backplate (R + L)",
       "extra": [
-        "backplate_clip",
-        "backplate_clip",
-        "backplate_clip",
-        "backplate_clip",
-        "backplate_mount",
-        "backplate_mount"
+        "backplate_clips",
+        "backplate_mounts",
+        "backplate_bolts",
+        "t_key"
       ],
-      "printWeight": 156,
+      "printWeight": 117,
       "connectors": [
         {
           "position": [0.07, -0.028, 0.01],
