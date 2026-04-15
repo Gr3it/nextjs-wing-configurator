@@ -52,7 +52,7 @@
     "C_bolt": {
       "file": "C_bolt-transformed.glb",
       "label": "Connector bolt",
-      "printWeight": 14,
+      "printWeight": 1.5,
       "previewImg": "/images/parts/C_bolt.png"
     },
     "A1_arm_static_angled_large": {
