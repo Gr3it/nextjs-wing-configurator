@@ -18,6 +18,11 @@ const presets = [
     creator: "Bzioo",
     image: "/images/presets/Dragon.png",
   },
+  {
+    title: "Exoskeleton",
+    creator: "Greit",
+    image: "/images/presets/Exoskeleton.png",
+  },
 ];
 
 export default function Presets() {

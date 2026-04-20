@@ -2,6 +2,7 @@ import { proxy } from "valtio";
 import angel from "../presets/angel.json";
 import dragon from "../presets/dragon.json";
 import showcase from "../presets/showcase.json";
+import exoskeleton from "../presets/exoskeleton.json";
 import piecesData from "@/data/pieces.json";
 
 // --- Types (JSDoc for intellisense) ---
@@ -77,8 +78,9 @@ export const state = proxy({
     angel: angel.config,
     dragon: dragon.config,
     showcase: showcase.config,
+    exoskeleton: exoskeleton.config,
   },
-  basePresets: ["empty", "angel", "dragon", "showcase"],
+  basePresets: ["empty", "angel", "dragon", "showcase", "exoskeleton"],
   cameraResetKey: 0,
   showGizmo: false,
   showTutorial: false,
