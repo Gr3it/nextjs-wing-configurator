@@ -91,6 +91,7 @@ export const basePresets = state.basePresets;
 
 // --- LocalStorage persistence ---
 const LS_KEY = "wingConfigurator_customPresets";
+const LS_SELECTED_KEY = "wingConfigurator_selectedPreset";
 
 /** Saves all non-base presets to localStorage. */
 const persistCustomPresets = () => {
@@ -107,19 +108,42 @@ const persistCustomPresets = () => {
   }
 };
 
-/** Loads custom presets from localStorage into the store. */
+/** Saves the currently selected preset name to localStorage. */
+const persistSelectedPreset = () => {
+  try {
+    localStorage.setItem(LS_SELECTED_KEY, state.preset);
+  } catch (e) {
+    console.warn("wingState: failed to persist selected preset", e);
+  }
+};
+
+/** Loads custom presets from localStorage into the store, and restores the selected preset. */
 export const loadCustomPresets = () => {
   try {
     const raw = localStorage.getItem(LS_KEY);
-    if (!raw) return;
-    const custom = JSON.parse(raw);
-    for (const [key, value] of Object.entries(custom)) {
-      if (!state.basePresets.includes(key)) {
-        state.presets[key] = value;
+    if (raw) {
+      const custom = JSON.parse(raw);
+      for (const [key, value] of Object.entries(custom)) {
+        if (!state.basePresets.includes(key)) {
+          state.presets[key] = value;
+        }
       }
     }
   } catch (e) {
     console.warn("wingState: failed to load custom presets", e);
+  }
+
+  // Restore the previously selected preset
+  try {
+    const selectedName = localStorage.getItem(LS_SELECTED_KEY);
+    if (selectedName && state.presets[selectedName] !== undefined) {
+      state.rightWingRoot = JSON.parse(
+        JSON.stringify(state.presets[selectedName]),
+      );
+      state.preset = selectedName;
+    }
+  } catch (e) {
+    console.warn("wingState: failed to restore selected preset", e);
   }
 };
 
@@ -136,6 +160,27 @@ export const deleteCustomPreset = (name) => {
     state.active.path = null;
   }
   persistCustomPresets();
+  persistSelectedPreset();
+};
+
+/**
+ * Renames a custom preset in the store and persists to localStorage.
+ * @param {string} oldName
+ * @param {string} newName
+ */
+export const renameCustomPreset = (oldName, newName) => {
+  if (state.basePresets.includes(oldName)) return; // never rename base presets
+  if (state.presets[newName] !== undefined) return; // name conflict
+
+  state.presets[newName] = state.presets[oldName];
+  delete state.presets[oldName];
+
+  if (state.preset === oldName) {
+    state.preset = newName;
+  }
+
+  persistCustomPresets();
+  persistSelectedPreset();
 };
 
 // --- Auto-generate Custom Profiles ---
@@ -167,6 +212,7 @@ const handlePresetModification = () => {
       presets[state.preset] = JSON.parse(JSON.stringify(state.rightWingRoot));
       isBatching = false;
       persistCustomPresets();
+      persistSelectedPreset();
     }, 0);
   }
 };
@@ -353,6 +399,7 @@ export const setPreset = (name, config) => {
   state.rightWingRoot = JSON.parse(JSON.stringify(config));
   state.preset = name;
   state.active.path = null;
+  persistSelectedPreset();
 };
 
 // --- Camera ---

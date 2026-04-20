@@ -1,7 +1,13 @@
 "use client";
 import { useState } from "react";
 import { useSnapshot } from "valtio";
-import { state, presets, setPreset } from "@/store/wingState";
+import {
+  state,
+  presets,
+  setPreset,
+  deleteCustomPreset,
+  renameCustomPreset,
+} from "@/store/wingState";
 import Button from "./Button";
 import ProfileModal from "./ProfileModal";
 import { ChevronDown, Pencil, Trash2 } from "lucide-react";
@@ -33,14 +39,10 @@ export default function ProfileControls() {
         return;
       }
 
-      presets[newName] = presets[snap.preset];
-      delete presets[snap.preset];
-      state.preset = newName;
+      renameCustomPreset(snap.preset, newName);
       toast.success("Profile renamed");
     } else if (modalState.type === "delete") {
-      delete presets[snap.preset];
-      state.preset = "empty";
-      state.rightWingRoot = JSON.parse(JSON.stringify(presets["empty"]));
+      deleteCustomPreset(snap.preset);
       toast.success("Profile deleted");
     }
   };
