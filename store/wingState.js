@@ -321,8 +321,11 @@ export const swapPiece = (path, newPieceId) => {
     return;
   }
 
-  // Numero di connettori del nuovo pezzo (0 se foglia)
-  const newConnCount = newPieceInfo.connectors?.length ?? 0;
+  // Info del pezzo attuale (prima dello swap)
+  const oldPieceInfo = piecesData.pieces[node.piece];
+  const oldConnectors = oldPieceInfo?.connectors ?? [];
+  const newConnectors = newPieceInfo.connectors ?? [];
+  const newConnCount = newConnectors.length;
 
   // Aggiorna il pieceId
   node.piece = newPieceId;
@@ -330,6 +333,16 @@ export const swapPiece = (path, newPieceId) => {
   // Taglia i children in eccesso se il nuovo pezzo ha meno slot
   if (node.children.length > newConnCount) {
     node.children.length = newConnCount;
+  }
+
+  // Elimina i subtree dove il tipo di connettore figlio è cambiato
+  for (let i = 0; i < Math.min(node.children.length, newConnCount); i++) {
+    if (!node.children[i]) continue; // slot già vuoto
+    const oldType = oldConnectors[i]?.type;
+    const newType = newConnectors[i]?.type;
+    if (oldType !== newType) {
+      node.children[i] = undefined;
+    }
   }
 
   handlePresetModification();
