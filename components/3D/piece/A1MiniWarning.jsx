@@ -1,8 +1,4 @@
-"use client";
-import React, { useState, useRef } from "react";
-import * as THREE from "three";
 import { Html } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 import { useSnapshot } from "valtio";
 import { state } from "@/store/wingState";
 
@@ -10,36 +6,14 @@ import { state } from "@/store/wingState";
  * A1MiniWarning — 3D warning label if a piece requires a large bed
  * but the A1 mini filter is enabled.
  */
-export default function A1MiniWarning({ meshRef, object, requiresLargeBed }) {
+export default function A1MiniWarning({ requiresLargeBed }) {
   const snap = useSnapshot(state);
-  const [localCenter, setLocalCenter] = useState([0, 0, 0]);
-  // Flag to run the center calculation only once per mount, after the first
-  // R3F frame — at that point world matrices are guaranteed to be propagated.
-  const computed = useRef(false);
-  const frames = useRef(0);
-
-  useFrame(() => {
-    if (computed.current || !meshRef?.current || !object) return;
-    
-    if (frames.current < 2) {
-      frames.current++;
-      return;
-    }
-    
-    computed.current = true;
-    const box = new THREE.Box3().setFromObject(object);
-    const centerV = new THREE.Vector3();
-    box.getCenter(centerV);
-    meshRef.current.worldToLocal(centerV);
-    setLocalCenter([centerV.x, centerV.y, centerV.z]);
-  });
 
   if (!snap.a1MiniOnly || !requiresLargeBed) return null;
 
   return (
     <Html
       center
-      position={localCenter}
       zIndexRange={[50, 100]}
       style={{ pointerEvents: "none" }}
     >

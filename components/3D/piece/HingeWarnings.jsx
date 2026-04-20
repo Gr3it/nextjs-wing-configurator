@@ -15,42 +15,23 @@ const _slotDir = new THREE.Vector3(); // hinge dovetail slot direction
 const RAD_TO_DEG = 180 / Math.PI;
 
 /**
- * Self-contained hinge warning component.
+ * Hinge warning component.
  *
  * Every frame it queries the world orientation of `meshRef` via
- * `getWorldQuaternion`, rotates the local Z axis (0,0,1) into world space,
+ * `getWorldQuaternion`, rotates the local Y axis (0,1,0) into world space,
  * and measures its angle against world UP (0,1,0).
  *
  * If the angle exceeds `config.hingeWarningAngleDeg` (default 50°) it renders
- * a drei Html warning label 2 units above the piece.
+ * a drei Html warning label natively at its provided coordinate origin.
  *
- * @param {{ meshRef: React.RefObject, label: string }} props
+ * @param {{ meshRef: React.RefObject }} props
  */
-export default function HingeWarnings({ meshRef, object, label }) {
+export default function HingeWarnings({ meshRef }) {
   const [warningAngle, setWarningAngle] = useState(null);
-  const [localCenter, setLocalCenter] = useState([0, 0, 0]);
   const lastRef = useRef(null);
-  const frames = useRef(0);
-  const computed = useRef(false);
 
   useFrame(() => {
     if (!meshRef?.current) return;
-
-    // Wait 2 frames. In the first useFrame, R3F's renderer hasn't yet 
-    // called scene.updateMatrixWorld(). Skipping frames ensures the parents'
-    // world matrices are fully computed.
-    if (!computed.current && object) {
-      if (frames.current < 2) {
-        frames.current++;
-        return;
-      }
-      computed.current = true;
-      const box = new THREE.Box3().setFromObject(object);
-      const centerV = new THREE.Vector3();
-      box.getCenter(centerV);
-      meshRef.current.worldToLocal(centerV);
-      setLocalCenter([centerV.x, centerV.y, centerV.z]);
-    }
 
     // Get the world-space quaternion of the hinge group directly from
     // the Three.js scene graph — no manual matrix math needed.
@@ -80,12 +61,7 @@ export default function HingeWarnings({ meshRef, object, label }) {
   if (!warningAngle) return null;
 
   return (
-    <Html
-      center
-      position={localCenter}
-      zIndexRange={[50, 100]}
-      style={{ pointerEvents: "none" }}
-    >
+    <Html center zIndexRange={[50, 100]} style={{ pointerEvents: "none" }}>
       <div
         style={{
           display: "flex",

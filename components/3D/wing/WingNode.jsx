@@ -10,6 +10,8 @@ import {
   DeleteButton as PieceDeleteButton,
   HingeWarnings,
   A1MiniWarning,
+  PieceCenterContainer,
+  SwapButton,
 } from "../piece";
 import { useHighlightedScene } from "@/hooks/useHighlightedScene";
 import { useNodeRotation } from "@/hooks/useNodeRotation";
@@ -159,23 +161,13 @@ function WingNodeInner({ node, path, isRight, position, pieceInfo }) {
               )}
             </group>
           );
-        })}{" "}
-        {isHinge && (
-          <HingeWarnings
-            meshRef={targetRef}
-            object={mainScene}
-            label={pieceInfo.labelnameOverride ?? pieceInfo.label}
-          />
-        )}
-        {/* A1 mini incompatibility warning */}
-        <A1MiniWarning
-          meshRef={targetRef}
-          object={mainScene}
-          requiresLargeBed={pieceInfo.requiresLargeBed}
-        />
+        })}
+        <PieceCenterContainer meshRef={targetRef} object={mainScene}>
+          {isHinge && <HingeWarnings meshRef={targetRef} />}
+          <A1MiniWarning requiresLargeBed={pieceInfo.requiresLargeBed} />
+          <SwapButton path={path} isActive={isActive} />
+        </PieceCenterContainer>
       </group>
-
-      {/* Hinge detachment warning — self-contained, renders 2 units above */}
 
       <PieceDeleteButton path={path} isActive={isActive} />
     </group>

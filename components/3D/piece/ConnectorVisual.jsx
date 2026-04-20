@@ -32,27 +32,40 @@ export default function ConnectorVisual({
 
   const texture = useMemo(() => {
     const canvas = document.createElement("canvas");
-    canvas.width = 128;
-    canvas.height = 128;
+    canvas.width = 120;
+    canvas.height = 120;
     const ctx = canvas.getContext("2d");
     if (!ctx) return null;
 
+    // Lucide icons are natively 24x24. Scale up by 5 to fit 120x120.
+    ctx.scale(5, 5);
     ctx.strokeStyle = "white";
-    ctx.lineWidth = 20;
+    ctx.lineWidth = 2.5;
     ctx.lineCap = "round";
-    ctx.beginPath();
+    ctx.lineJoin = "round";
+
+    const drawPath = (d) => {
+      ctx.beginPath();
+      ctx.stroke(new Path2D(d));
+    };
 
     if (type === "add") {
-      ctx.moveTo(20, 64);
-      ctx.lineTo(108, 64);
-      ctx.moveTo(64, 20);
-      ctx.lineTo(64, 108);
+      // Plus icon
+      drawPath("M5 12h14");
+      drawPath("M12 5v14");
     } else if (type === "delete") {
-      ctx.moveTo(20, 64);
-      ctx.lineTo(108, 64);
+      // Minus icon
+      drawPath("M5 12h14");
+    } else if (type === "swap") {
+      // RefreshCcw icon (Counterclockwise)
+      drawPath("M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8");
+      drawPath("M3 3v5h5");
+      drawPath("M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16");
+      drawPath("M16 16h5v5");
     }
 
-    ctx.stroke();
+    // For debugging: ctx.strokeRect(0, 0, 24, 24);
+
     return new THREE.CanvasTexture(canvas);
   }, [type]);
 

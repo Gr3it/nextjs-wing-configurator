@@ -112,6 +112,10 @@ export default function Tutorial() {
                   <b>Delete:</b> Click the minus (-) icon
                 </li>
                 <li>
+                  <b>Swap:</b> Click the swap (↻) icon to replace a piece
+                  with a compatible alternative
+                </li>
+                <li>
                   <b>Add:</b> Click the plus (+) connectors
                 </li>
               </ul>

@@ -13,6 +13,10 @@ export const config = {
       color: "#dc2626",
       hoverColor: "#ef4444",
     },
+    swap: {
+      color: "#2563eb",
+      hoverColor: "#3b82f6",
+    },
     size: 0.0125,
   },
   wings: {

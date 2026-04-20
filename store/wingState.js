@@ -2,6 +2,7 @@ import { proxy } from "valtio";
 import angel from "../presets/angel.json";
 import dragon from "../presets/dragon.json";
 import showcase from "../presets/showcase.json";
+import piecesData from "@/data/pieces.json";
 
 // --- Types (JSDoc for intellisense) ---
 /**
@@ -247,6 +248,42 @@ export const removePiece = (path) => {
   // Resetta active se il nodo rimosso era quello attivo
   if (state.active.path?.join() === path.join()) {
     state.active.path = null;
+  }
+
+  handlePresetModification();
+};
+
+// --- Swap ---
+/**
+ * Sostituisce il pezzo nel nodo al path indicato con newPieceId.
+ * Conserva i children esistenti; se il nuovo pezzo ha meno connettori
+ * di quanti children sono presenti, elimina quelli in eccesso.
+ *
+ * @param {number[]} path
+ * @param {string}   newPieceId
+ */
+export const swapPiece = (path, newPieceId) => {
+  const node = path.length === 0 ? state.rightWingRoot : getNodeByPath(path);
+  if (!node) {
+    console.warn("swapPiece: node not found at path", path);
+    return;
+  }
+
+  const newPieceInfo = piecesData.pieces[newPieceId];
+  if (!newPieceInfo) {
+    console.warn("swapPiece: unknown pieceId", newPieceId);
+    return;
+  }
+
+  // Numero di connettori del nuovo pezzo (0 se foglia)
+  const newConnCount = newPieceInfo.connectors?.length ?? 0;
+
+  // Aggiorna il pieceId
+  node.piece = newPieceId;
+
+  // Taglia i children in eccesso se il nuovo pezzo ha meno slot
+  if (node.children.length > newConnCount) {
+    node.children.length = newConnCount;
   }
 
   handlePresetModification();

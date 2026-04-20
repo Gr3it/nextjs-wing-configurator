@@ -4,3 +4,5 @@ export { default as DeleteButton } from './DeleteButton';
 export { default as SelectMenu } from './SelectMenu';
 export { default as HingeWarnings } from './HingeWarnings';
 export { default as A1MiniWarning } from './A1MiniWarning';
+export { default as PieceCenterContainer } from './PieceCenterContainer';
+export { default as SwapButton } from './SwapButton';
